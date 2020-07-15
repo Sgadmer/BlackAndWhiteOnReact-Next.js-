@@ -1,0 +1,55 @@
+$brightColor: white;
+
+%text {
+    font-family: impact;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 72px;
+    line-height: 84px;
+    color: #000000;
+    text-align: center;
+}
+
+%commonStyles {
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    background-color: $brightColor;
+    cursor: pointer;
+}
+
+.wrapper {
+    width: 605px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nameInput {
+    width: 480px;
+    height: 75px;
+
+    @extend %commonStyles;
+    @extend %text;
+}
+
+.startGameBTN {
+    width: 605px;
+    height: 111px;
+    transition: all 1.5s;
+    -webkit-transition: all 1.5s;
+    -moz-transition: all 1.5s;
+    -ms-transition: all 1.5s;
+    -o-transition: all 1.5s;
+
+    @extend %commonStyles;
+    @extend %text;
+
+    &:hover {
+        box-shadow: 0 0 20px white;
+    }
+}

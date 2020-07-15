@@ -1,0 +1,11 @@
+$darkColor: black;
+
+body{
+    background-color: $darkColor;
+    max-width: 1920px;
+    max-height: 1080px;
+    min-height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
