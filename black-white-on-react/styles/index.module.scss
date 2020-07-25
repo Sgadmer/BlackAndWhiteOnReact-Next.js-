@@ -1,55 +1,96 @@
 $brightColor: white;
 
 %text {
-    font-family: impact;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 72px;
-    line-height: 84px;
-    color: #000000;
-    text-align: center;
+  font-family: impact;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 72px;
+  line-height: 84px;
+  color: #000000;
+  text-align: center;
 }
 
 %commonStyles {
-    border-radius: 10px;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    background-color: $brightColor;
-    cursor: pointer;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  background-color: $brightColor;
+  cursor: pointer;
 }
 
 .wrapper {
-    width: 605px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+  width: 605px;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
 }
 
 .nameInput {
-    width: 480px;
-    height: 75px;
+  @extend %commonStyles;
+  @extend %text;
+  width: 480px;
+  height: 75px;
+}
 
-    @extend %commonStyles;
-    @extend %text;
+.inputErrorRed {
+  @extend %commonStyles;
+  @extend %text;
+
+  color: red;
+
+  width: 480px;
+  height: 75px;
+}
+
+.inputErrorAlert {
+  @extend %commonStyles;
+  @extend %text;
+
+  font-size: 30px;
+  line-height: 40px;
+  width: 240px;
+  min-height: 40px;
+  color: rgb(0, 0, 0);
+  position: absolute;
+  right: -33%;
+  top: 0;
+  z-index: 99;
+
+  &::after {
+    content: "";
+    width: 25px;
+    height: 25px;
+    background-color: $brightColor;
+    position: absolute;
+    left: -5px;
+    top: 8px;
+    transform: rotate(45deg);
+    z-index: 1;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+  }
 }
 
 .startGameBTN {
-    width: 605px;
-    height: 111px;
-    transition: all 1.5s;
-    -webkit-transition: all 1.5s;
-    -moz-transition: all 1.5s;
-    -ms-transition: all 1.5s;
-    -o-transition: all 1.5s;
+  width: 605px;
+  height: 111px;
+  transition: all 1.5s;
+  -webkit-transition: all 1.5s;
+  -moz-transition: all 1.5s;
+  -ms-transition: all 1.5s;
+  -o-transition: all 1.5s;
 
-    @extend %commonStyles;
-    @extend %text;
+  @extend %commonStyles;
+  @extend %text;
 
-    &:hover {
-        box-shadow: 0 0 20px white;
-    }
+  &:hover {
+    box-shadow: 0 0 20px $brightColor;
+  }
 }
