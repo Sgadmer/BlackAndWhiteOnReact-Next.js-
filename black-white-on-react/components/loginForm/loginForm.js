@@ -1,14 +1,10 @@
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Router from 'next/router'
 import classes from '../../styles/index.module.scss'
 import NameInput from './nameInput.js'
 import SubmitBTN from './submitBTN';
 import InputError from './inputError';
-import Leader from '../LeadersChoice/LeadersChoice'
-import axios from 'axios';
-import host from '../portHostData/portHostData'
-import { EncodeURL } from '../encodeDecodeURL/encodeDecodeURL.js'
+import { objectToURL } from '../encodeDecodeURL/encodeDecodeURL.js'
 
 
 export default function LoginForm() {
@@ -28,8 +24,12 @@ export default function LoginForm() {
         else {
             setErrorText('');
 
-            let URLToLeaderPage = `/LeadersChoice/${EncodeURL('?name=' + input)}`;
-            Router.push('/LeadersChoice/[userName]', URLToLeaderPage );
+            let userData = {
+                name: input,
+            }
+
+            let URLToLeaderPage = `/LeadersChoice/${objectToURL(userData)}`;
+            Router.push('/LeadersChoice/[user]', URLToLeaderPage);
         }
     }
 
@@ -70,3 +70,9 @@ export default function LoginForm() {
 
 // axios.get(host)
 //     .then(response => console.log("response", response.data))
+
+
+
+// import Link from 'next/link';
+// import axios from 'axios';
+// import host from '../portHostData/portHostData'

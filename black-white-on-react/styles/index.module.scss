@@ -1,9 +1,6 @@
 $brightColor: white;
 
 %text {
-  font-family: impact;
-  font-style: normal;
-  font-weight: normal;
   font-size: 72px;
   line-height: 84px;
   color: #000000;
@@ -81,11 +78,7 @@ $brightColor: white;
 .startGameBTN {
   width: 605px;
   height: 111px;
-  transition: all 1.5s;
-  -webkit-transition: all 1.5s;
-  -moz-transition: all 1.5s;
-  -ms-transition: all 1.5s;
-  -o-transition: all 1.5s;
+  transition: all .45s;
 
   @extend %commonStyles;
   @extend %text;

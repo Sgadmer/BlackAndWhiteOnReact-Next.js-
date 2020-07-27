@@ -6,12 +6,15 @@
     "server": "nodemon server.js",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "all": "concurrently \"npm run server\" \"npm run dev\" --kill-others"
   },
   "dependencies": {
     "axios": "^0.19.2",
+    "concurrently": "^5.2.0",
     "express": "^4.17.1",
     "next": "9.4.4",
+    "next-base64": "github:afeiship/next-base64",
     "nodemon": "^2.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
