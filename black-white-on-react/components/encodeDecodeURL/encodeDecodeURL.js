@@ -8,22 +8,12 @@ export function objectFromURL(url) {
     return JSON.parse(DecodeURL(url));
 }
 
-// export function EncodeURL(str) {
-//     return NxBase64.encode(unescape(encodeURIComponent(str)));
-// }
-
-
-// export function DecodeURL(str) {
-//     return decodeURIComponent(escape(NxBase64.encode(str)));
-// }
-
-
-
 export function EncodeURL(str) {
-    return window.btoa(unescape(encodeURIComponent(str)));
+    return NxBase64.encode(unescape(encodeURIComponent(str)));
 }
 
 
 export function DecodeURL(str) {
-    return decodeURIComponent(escape(window.atob(str)));
+    return decodeURIComponent(escape(NxBase64.decode(str)));
 }
+

@@ -1,10 +1,6 @@
-import { objectFromURL, objectToURL } from "../encodeDecodeURL/encodeDecodeURL";
 import classes from '../../styles/choiceCards.module.scss';
-import Router from 'next/router';
 
-export default function NumberOfPlayersComponent({ router }) {
-
-    let userData = objectFromURL(router.query.user);
+export default function NumberOfPlayersComponent({ userData }) {
 
     function onChoosingNumber(Number) {
         userData.numberOfPlayers = Number;
