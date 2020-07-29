@@ -14,6 +14,9 @@ app.get('/', (req, res) => {
 
 io.on('connection', socket => {
     console.log(`socket conected: ${socket.id}`);
+    socket.on('hi', (data) => {
+        console.log(data);
+    })
 })
 
 server.listen(port, (err) => {

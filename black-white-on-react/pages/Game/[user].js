@@ -1,17 +1,16 @@
-import LeadersChoiceComponent from "../../components/LeadersChoice/LeadersChoice";
 import { objectFromURL } from "../../components/encodeDecodeURL/encodeDecodeURL";
+import GameComponent from "../../components/Game/Game";
 
-
-
-export default function LeadersChoicePage({userData}) {
+export default function GamePage({ userData }) {
 
 
     return (
         <>
-            <LeadersChoiceComponent  userData={userData} />
+            <GameComponent userData={userData} />
         </>
     )
 }
+
 
 export async function getServerSideProps(context) {
 

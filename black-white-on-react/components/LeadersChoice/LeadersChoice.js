@@ -19,8 +19,12 @@ export default function LeadersChoiceComponent({ userData }) {
                 <h1 className={classes.userName}>{userData.name}, выберите ведущего</h1>
 
                 <div className={classes.wrapperCards}>
-                <div className={classes.ChoiceCard} onClick={() => onChoosingLeader('player')}><h1>Ведущий - игрок</h1></div>
-                <div className={classes.ChoiceCard} onClick={() => onChoosingLeader('bot')}><h1>Ведущим - бот</h1></div>
+                    <div
+                        className={classes.ChoiceCard}
+                         /*onClick={() => onChoosingLeader('player')}*/>
+                        <h1>Ведущий - игрок</h1>
+                        <small className={classes.dontWorking}>Пока не работает :)</small></div>
+                    <div className={classes.ChoiceCard} onClick={() => onChoosingLeader('bot')}><h1>Ведущий - бот</h1></div>
                 </div>
 
             </div>

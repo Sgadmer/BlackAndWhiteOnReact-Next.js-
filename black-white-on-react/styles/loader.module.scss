@@ -1,0 +1,59 @@
+$grayColor: #545454;
+$brightColor: white;
+$darkColor: black;
+$redColor: red;
+
+.loader {
+  width: 10rem;
+  height: 10rem;
+  background-color: $brightColor;
+  position: relative;
+  border-radius: 50%;
+  top: -10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 84px;
+
+  &::before {
+    content: "";
+    width: 6em;
+    height: 6rem;
+    background-color: $darkColor;
+    border-radius: 50%;
+  }
+
+  &::after {
+    content: "";
+    width: 2em;
+    height: 2rem;
+    background-color: $redColor;
+    border-radius: 50%;
+    top: 0;
+    position: absolute;
+  }
+
+  animation: loadSpin 1.5s infinite ease-in-out;
+}
+
+@keyframes loadSpin {
+  0% {
+    transform: rotate(0);
+  }
+
+  50% {
+    transform: rotate(360deg);
+  }
+
+  0% {
+    transform: rotate(0);
+  }
+}
+
+.loadText {
+  background-color: $grayColor;
+  font-size: 60px;
+  color: $brightColor;
+  padding: 0 15px;
+  text-align: center;
+}

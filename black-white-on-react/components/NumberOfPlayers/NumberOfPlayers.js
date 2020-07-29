@@ -1,16 +1,18 @@
 import classes from '../../styles/choiceCards.module.scss';
+import { objectToURL } from '../encodeDecodeURL/encodeDecodeURL';
+import Router from 'next/router';
 
 export default function NumberOfPlayersComponent({ userData }) {
 
     function onChoosingNumber(Number) {
         userData.numberOfPlayers = Number;
 
-        // let URLToNumberOfPlayersPage = `/NumberOfPlayers/${objectToURL(userData)}`;
-        // Router.push('/NumberOfPlayers/[user]', URLToNumberOfPlayersPage);
+        let URLToGamePage = `/Game/${objectToURL(userData)}`;
+        Router.push('/Game/[user]', URLToGamePage);
 
         console.log(userData);
-
     }
+    
 
     return (
         <>

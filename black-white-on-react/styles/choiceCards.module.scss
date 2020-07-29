@@ -44,11 +44,16 @@ $brightColor: white;
     text-align: center;
     transition: all 0.45s;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 
     &:hover {
       box-shadow: 0 0 20px $brightColor;
     }
+  }
+
+  .dontWorking{
+    color: red;
   }
 }
