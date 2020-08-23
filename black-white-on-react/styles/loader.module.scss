@@ -3,57 +3,107 @@ $brightColor: white;
 $darkColor: black;
 $redColor: red;
 
-.loader {
-  width: 10rem;
-  height: 10rem;
+%commonStyles {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
   background-color: $brightColor;
-  position: relative;
-  border-radius: 50%;
-  top: -10%;
+  cursor: pointer;
+}
+
+.wpapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 84px;
-
-  &::before {
-    content: "";
-    width: 6em;
-    height: 6rem;
-    background-color: $darkColor;
+  .loader {
+    width: 10rem;
+    height: 10rem;
+    background-color: $brightColor;
+    position: relative;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    &::before {
+      content: "";
+      width: 6em;
+      height: 6rem;
+      background-color: $darkColor;
+      border-radius: 50%;
+    }
+
+    &::after {
+      content: "";
+      width: 2em;
+      height: 2rem;
+      background-color: $redColor;
+      border-radius: 50%;
+      top: 0;
+      position: absolute;
+    }
+
+    animation: loadSpin 1.5s infinite ease-in-out;
   }
 
-  &::after {
-    content: "";
-    width: 2em;
-    height: 2rem;
-    background-color: $redColor;
-    border-radius: 50%;
-    top: 0;
-    position: absolute;
+  @keyframes loadSpin {
+    0% {
+      transform: rotate(0);
+    }
+
+    50% {
+      transform: rotate(360deg);
+    }
+
+    0% {
+      transform: rotate(0);
+    }
   }
 
-  animation: loadSpin 1.5s infinite ease-in-out;
-}
-
-@keyframes loadSpin {
-  0% {
-    transform: rotate(0);
+  .loadText {
+    @extend %commonStyles;
+    cursor: default;
+    background-color: $grayColor;
+    font-size: 60px;
+    color: $brightColor;
+    padding: 0 15px;
+    text-align: center;
+    margin: 5rem 0 1rem 0;
+    max-width: max-content;
   }
 
-  50% {
-    transform: rotate(360deg);
-  }
+  .copyURLblock {
+    display: flex;
 
-  0% {
-    transform: rotate(0);
-  }
-}
+    .URLforOtherPlayers {
+      @extend %commonStyles;
+      cursor: default;
+      width: 35vw;
+      background-color: $grayColor;
+      color: $brightColor;
+      overflow: hidden;
+      font-size: 30px;
+      margin-right: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .copyURL_btn {
+      @extend %commonStyles;
+      background-color: $brightColor;
+      color: $grayColor;
+      font-size: 45px;
+      padding: 0 15px;
+      box-shadow: 0 0 20px $brightColor;
+      border-radius: 1rem;
+      transition: all 0.5s;
 
-.loadText {
-  background-color: $grayColor;
-  font-size: 60px;
-  color: $brightColor;
-  padding: 0 15px;
-  text-align: center;
+      &:hover {
+        box-shadow: 0 0 30px $grayColor;
+      }
+    }
+  }
 }
