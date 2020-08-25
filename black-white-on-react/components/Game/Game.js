@@ -3,16 +3,18 @@ import { useState, useEffect } from 'react';
 import connectSocket from "../socket/socket";
 import { useRouter } from 'next/router';
 import createURLforOtherPlayers from "./createURLForOtherPlayers";
+import GameTableComponent from "./GameTable";
+import Router from 'next/router'
 
 export default function GameComponent({ userData }) {
     const router = useRouter()
 
     console.log(userData);
 
+    const [isReadyToGame, setisReadyToGame] = useState(false);
     const [loadText, setLoadText] = useState("Подключаемся к серверу");
     const [URLforOtherPlayers, setURLforOtherPlayers] = useState("");
     const [URLcopyBTNText, setcopyBTNText] = useState("");
-    const [count, setCount] = useState(10);
     let socket;
 
     useEffect(() => {
@@ -36,20 +38,35 @@ export default function GameComponent({ userData }) {
         }
 
 
-        socket.on('roomJoined', ({ actualNumberOfPlayers, numberOfPlayers }) => {
+        socket.on('userJoin_UserLeave', ({ actualNumberOfPlayers, numberOfPlayers }) => {
             setLoadText(`Игроков в комнате ${actualNumberOfPlayers} / ${numberOfPlayers}`)
             let playersURL = createURLforOtherPlayers(userData);
-            setURLforOtherPlayers(playersURL)
-            setcopyBTNText('Скопировать ссылку')
+            if (actualNumberOfPlayers == 1) {
+                setURLforOtherPlayers(playersURL)
+                setcopyBTNText('Скопировать ссылку')
+            }
 
+            if (actualNumberOfPlayers == numberOfPlayers) {
+                setLoadText('Начинаем игру!')
+
+                setTimeout(() => {
+                    setisReadyToGame(true)
+                }, 1500)
+            }
         })
 
 
-        socket.on('roomOverfill', () => {
-            setInterval(() => {
-                () => setCount(count - 1);
-                setLoadText(`Комната переполненна, на главную через ${count}`)
 
+        socket.on('roomOverfill', () => {
+            let localCount = 10;
+            let pushTimer = setInterval(() => {
+                localCount--;
+                setLoadText(`Комната переполненна, на главную через ${localCount}`)
+
+                if (localCount == 0) {
+                    clearInterval(pushTimer)
+                    Router.push('/');     
+                }
             }, 1000);
         })
 
@@ -57,9 +74,18 @@ export default function GameComponent({ userData }) {
 
 
 
-    return (
-        <>
-            <Loader loadText={loadText} URLforOtherPlayers={URLforOtherPlayers} URLcopyBTNText={URLcopyBTNText} />
-        </>
-    )
+    if (!isReadyToGame) {
+        return (
+            <>
+                <Loader loadText={loadText} URLforOtherPlayers={URLforOtherPlayers} URLcopyBTNText={URLcopyBTNText} />
+            </>
+        )
+    } else {
+        return (
+            <>
+                <GameTableComponent userData={userData} />
+            </>
+        )
+    }
+
 }

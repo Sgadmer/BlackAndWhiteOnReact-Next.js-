@@ -6,42 +6,42 @@ const port = 8080;
 
 const rooms = new Map();
 
-app.get('/', (req, res) => {
-    console.log('MainPage');
-    res.set('Access-Control-Allow-Origin', '*');
-    res.send(`wefwefwefwe`);
-});
+// app.get('/', (req, res) => {
+//     console.log('MainPage');
+//     res.set('Access-Control-Allow-Origin', '*');
+//     res.send(`wefwefwefwe`);
+// });
 
 io.on('connection', (socket) => {
     console.log(`++socket Conected: ${socket.id}`);
 
-    setTimeout(() => {
-        socket.emit('socketConnected', '');
-    }, 1500);
+    //setTimeout(() => {
+    socket.emit('socketConnected', '');
+    //}, 1500);
 
     socket.on('createRoom', (userData) => {
-        rooms.set(socket.id, { numberOfPlayers: userData.numberOfPlayers, actualNumberOfPlayers: 0 })
+        rooms.set(socket.id, new Map([['numberOfPlayers', userData.numberOfPlayers], ['actualNumberOfPlayers', 0]]))
         console.log(rooms);
 
-        setTimeout(() => {
-            socket.emit('roomCreated', '');
-        }, 1500);
+        //setTimeout(() => {
+        socket.emit('roomCreated', '');
+        //}, 1500);
     });
 
     socket.on('joinRoom', (userData) => {
 
         let roomToJoin = rooms.get(userData.roomId)
-        if (roomToJoin.actualNumberOfPlayers < roomToJoin.numberOfPlayers) {
+        if (roomToJoin.get('actualNumberOfPlayers') < roomToJoin.get('numberOfPlayers')) {
 
-            roomToJoin[socket.id] = new Map()
-            roomToJoin.actualNumberOfPlayers += 1;
+            roomToJoin.set(socket.id, new Map())
+            roomToJoin.set('actualNumberOfPlayers', roomToJoin.get('actualNumberOfPlayers') + 1);
 
             socket.join(userData.roomId);
             console.log(rooms);
 
-            setTimeout(() => {
-                io.to(userData.roomId).emit('roomJoined', { actualNumberOfPlayers: roomToJoin.actualNumberOfPlayers, numberOfPlayers: userData.numberOfPlayers });
-            }, 1500);
+            //setTimeout(() => {
+            io.to(userData.roomId).emit('userJoin_UserLeave', { actualNumberOfPlayers: roomToJoin.get('actualNumberOfPlayers'), numberOfPlayers: userData.numberOfPlayers });
+            //}, 1500);
         } else {
             socket.emit('roomOverfill')
         }
@@ -51,16 +51,19 @@ io.on('connection', (socket) => {
 
     socket.on('disconnect', () => {
 
-        rooms.forEach((room) => {
+
+        rooms.forEach((room, roomId) => {
             if (room.has(socket.id)) {
                 room.delete(socket.id)
                 console.log(`--!socket ${socket.id} deleted`);
-                room.actualNumberOfPlayers -= 1
-                if (room.actualNumberOfPlayers == 0) {
+                room.set('actualNumberOfPlayers', room.get('actualNumberOfPlayers') - 1);
+                io.to(roomId).emit('userJoin_UserLeave', { actualNumberOfPlayers: room.get('actualNumberOfPlayers'), numberOfPlayers: room.get('numberOfPlayers') });
+                if (room.get('actualNumberOfPlayers') == 0) {
                     rooms.delete(socket.id)
+                    console.log(`!!-room ${socket.id} deleted`);
                 }
             }
-            console.log(room);
+            console.log(rooms);
         })
         console.log(`~~socket Disconnected: ${socket.id}`);
     })
