@@ -3,6 +3,8 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const port = 8080;
+const { randomInteger } = require('./components/Game/getRandomINT');
+
 
 const rooms = new Map();
 
@@ -33,7 +35,10 @@ io.on('connection', (socket) => {
         let roomToJoin = rooms.get(userData.roomId)
         if (roomToJoin.get('actualNumberOfPlayers') < roomToJoin.get('numberOfPlayers')) {
 
-            roomToJoin.set(socket.id, new Map())
+            roomToJoin.set(socket.id, new Map([
+                ['card1', randomInteger()],
+                ['card2', randomInteger()]
+            ]))
             roomToJoin.set('actualNumberOfPlayers', roomToJoin.get('actualNumberOfPlayers') + 1);
 
             socket.join(userData.roomId);
@@ -42,11 +47,17 @@ io.on('connection', (socket) => {
             //setTimeout(() => {
             io.to(userData.roomId).emit('userJoin_UserLeave', { actualNumberOfPlayers: roomToJoin.get('actualNumberOfPlayers'), numberOfPlayers: userData.numberOfPlayers });
             //}, 1500);
+            
         } else {
             socket.emit('roomOverfill')
         }
 
     });
+
+    socket.on('getPlayersCardsValue', (userData) => {
+        let playersInfo = rooms.get(userData.roomId).get(socket.id);
+        socket.emit('resPlayersCardsValue', { card1: playersInfo.get('card1'), card2: playersInfo.get('card2')  })
+    })
 
 
     socket.on('disconnect', () => {

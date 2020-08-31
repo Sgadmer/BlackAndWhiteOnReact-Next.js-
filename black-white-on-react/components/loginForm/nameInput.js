@@ -33,7 +33,7 @@ export default function NameInput({input, setInput}) {
 
     return (
         <>
-            <input className={styles} onChange={(e) => inputValidation(e)} value={input} placeholder='Имя' type="text" spellсheck="false" />
+            <input className={styles} onChange={(e) => inputValidation(e)} value={'input'} placeholder='Имя' type="text" spellсheck="false" />
             <InputError text={errorText} />
         </>
     )

@@ -1,6 +1,122 @@
-.backGround{
-    background: url(../images/bg.png) no-repeat;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+$brightColor: white;
+
+.backGround {
+  background: url(../images/bg.png) no-repeat;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cardsWrapper {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+  perspective: 10rem;
+}
+
+@mixin cardsAnimation($trX, $trY, $trZ, $scale) {
+  animation: cardsAnimation 1.5s linear;
+  @keyframes cardsAnimation {
+    0% {
+      transform: translate3d(0, 0, 0) skewX(0) scale(2);
+      opacity: 0;
+    }
+    1% {
+      opacity: 1;
+    }
+    80% {
+      transform: translate3d(0, 0, 0) skewX(0) scale(2);
+    }
+    100% {
+      transform: translate3d($trX, $trY, $trZ) skewX(-10deg), scale($scale);
+    }
+  }
+}
+
+.playersCardCommon {
+  cursor: pointer;
+  transition: all 0.5s;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  &:hover {
+    -webkit-box-shadow: 0px 0px 19px 3px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 0px 0px 19px 3px rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 19px 3px rgba(255, 255, 255, 1);
+  }
+}
+
+.card {
+  background: url(../images/card.png) no-repeat;
+  border-radius: .5rem;
+  background-size: 100% 100%;
+  height: 160px;
+  width: 90px;
+  position: absolute;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $brightColor;
+}
+
+.card1 {
+  @include cardsAnimation(-28rem, 2.6rem, 0, 1);
+  @extend .playersCardCommon;
+  transform: translate3d(-28rem, 2.6rem, 0) skewX(-10deg);
+  &:hover {
+    transform: translate3d(-28rem, 2.6rem, 0.5rem);
+  }
+}
+
+.card2 {
+  @include cardsAnimation(-20rem, 2.6rem, 0, 1);
+  @extend .playersCardCommon;
+  transform: translate3d(-20rem, 2.6rem, 0) skewX(-10deg);
+    &:hover {
+    transform: translate3d(-20rem, 2.6rem, 0.3rem);
+  }
+}
+
+.card3 {
+  @include cardsAnimation(-23rem, -7rem, 0, .8);
+  transform: translate3d(-23rem, -7rem, 0) skewX(-10deg) scale(.8);
+}
+
+.card4 {
+   @include cardsAnimation(-16rem, -7rem, 0, .8);
+  transform: translate3d(-16rem, -7rem, 0) skewX(-10deg) scale(.8);
+
+}
+
+.card5 {
+   @include cardsAnimation(17rem, -6.9rem, 0, .8);
+  transform: translate3d(17rem, -6.9rem, 0) skewX(3deg) scale(.8);
+}
+
+.card6 {
+  @include cardsAnimation(24rem, -6.9rem, 0, .8);
+  transform: translate3d(24rem, -6.9rem, 0) skewX(3deg) scale(.8);
+}
+
+
+.card7 {
+  @include cardsAnimation(20rem, 2.8rem, 0, 1);
+  transform: translate3d(20rem, 2.8rem, 0) skewX(3deg) scale(1);
+}
+
+
+.card8 {
+  @include cardsAnimation(29rem, 2.8rem, 0, 1);
+  transform: translate3d(29rem, 2.8rem, 0) skewX(3deg) scale(1);
 }

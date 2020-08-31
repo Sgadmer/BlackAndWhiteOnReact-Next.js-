@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import connectSocket from "../socket/socket";
 import { useRouter } from 'next/router';
 import createURLforOtherPlayers from "./createURLForOtherPlayers";
-import GameTableComponent from "./GameTable";
+import GameTableComponent from "./GameTable/GameTable";
 import Router from 'next/router'
 
 export default function GameComponent({ userData }) {
@@ -15,11 +15,9 @@ export default function GameComponent({ userData }) {
     const [loadText, setLoadText] = useState("Подключаемся к серверу");
     const [URLforOtherPlayers, setURLforOtherPlayers] = useState("");
     const [URLcopyBTNText, setcopyBTNText] = useState("");
-    let socket;
+    const [socket, setSocket] = useState(() => connectSocket())
 
     useEffect(() => {
-
-        socket = connectSocket();
 
         if (!userData.roomId) {
             socket.on('socketConnected', () => {
@@ -49,9 +47,9 @@ export default function GameComponent({ userData }) {
             if (actualNumberOfPlayers == numberOfPlayers) {
                 setLoadText('Начинаем игру!')
 
-                setTimeout(() => {
+                // setTimeout(() => {
                     setisReadyToGame(true)
-                }, 1500)
+                // }, 1500)
             }
         })
 
@@ -65,7 +63,7 @@ export default function GameComponent({ userData }) {
 
                 if (localCount == 0) {
                     clearInterval(pushTimer)
-                    Router.push('/');     
+                    Router.push('/');
                 }
             }, 1000);
         })
@@ -83,7 +81,7 @@ export default function GameComponent({ userData }) {
     } else {
         return (
             <>
-                <GameTableComponent userData={userData} />
+                <GameTableComponent userData={userData} socket={socket} />
             </>
         )
     }
