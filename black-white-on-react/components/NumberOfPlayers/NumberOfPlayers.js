@@ -20,9 +20,9 @@ export default function NumberOfPlayersComponent({ userData }) {
                 <h1 className={classes.userName}>{userData.name}, выберите количество игроков</h1>
 
                 <div className={classes.wrapperCards}>
-                    <div className={classes.ChoiceCard} onClick={() => onChoosingNumber('2')}><h1>2</h1></div>
-                    <div className={classes.ChoiceCard} onClick={() => onChoosingNumber('3')}><h1>3</h1></div>
-                    <div className={classes.ChoiceCard} onClick={() => onChoosingNumber('4')}><h1>4</h1></div>
+                    <div className={classes.ChoiceCard} onClick={() => onChoosingNumber(2)}><h1>2</h1></div>
+                    <div className={classes.ChoiceCard} onClick={() => onChoosingNumber(3)}><h1>3</h1></div>
+                    <div className={classes.ChoiceCard} onClick={() => onChoosingNumber(4)}><h1>4</h1></div>
                 </div>
 
             </div>

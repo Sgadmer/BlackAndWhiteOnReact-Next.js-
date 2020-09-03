@@ -4,7 +4,6 @@ import classes from '../../styles/index.module.scss'
 
 export default function NameInput({input, setInput}) {
 
-    // const [input, setInput] = useState("");
     const [styles, setStyles] = useState([classes.nameInput])
     const [errorText, setErrorText] = useState('');
 
@@ -13,12 +12,12 @@ export default function NameInput({input, setInput}) {
 
         const mainValidEXP = /[^a-zA-Zа-яА-Я]/gm;
 
-        (value.length > 10) ? inputIsTooLong() : inputIsOkay();
+        (value.length > 7) ? inputIsTooLong() : inputIsOkay();
 
         function inputIsTooLong() {
             value = value.replace(mainValidEXP, '');
             setStyles(classes.inputErrorRed)
-            setErrorText('Не более 10 символов');
+            setErrorText('Не более 7 символов');
         }
 
         function inputIsOkay() {
@@ -33,7 +32,7 @@ export default function NameInput({input, setInput}) {
 
     return (
         <>
-            <input className={styles} onChange={(e) => inputValidation(e)} value={'input'} placeholder='Имя' type="text" spellсheck="false" />
+            <input className={styles} onChange={(e) => inputValidation(e)} value={input} placeholder='Имя' type="text" spellсheck="false" />
             <InputError text={errorText} />
         </>
     )

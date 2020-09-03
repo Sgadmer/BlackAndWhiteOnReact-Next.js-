@@ -1,11 +1,11 @@
 import classes from '../../styles/index.module.scss'
 
 
-export default function SubmitBTN() {
+export default function SubmitBTN({ submitBTNText }) {
 
-    return (
-        <>
-          <button className={classes.startGameBTN} type='submit'>Начать игру</button>
-        </>
-    )
+  return (
+    <>
+      <button className={classes.startGameBTN} type='submit'>{submitBTNText}</button>
+    </>
+  )
 }

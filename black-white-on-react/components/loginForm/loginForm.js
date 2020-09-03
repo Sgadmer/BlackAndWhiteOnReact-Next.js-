@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Router from 'next/router'
 import classes from '../../styles/index.module.scss'
 import NameInput from './nameInput.js'
@@ -7,12 +7,20 @@ import InputError from './inputError';
 import { objectToURL } from '../encodeDecodeURL/encodeDecodeURL.js'
 
 
-export default function LoginForm() {
+export default function LoginForm({ userData }) {
 
     const [errorText, setErrorText] = useState('');
     const [input, setInput] = useState("");
+    const [submitBTNText, setsubmitBTNText] = useState("");
 
 
+    useEffect(() => {
+        if (!userData.roomId) {
+            setsubmitBTNText('Начать игру')
+        } else {
+            setsubmitBTNText('Присоединиться')
+        }
+    })
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -23,13 +31,17 @@ export default function LoginForm() {
         }
         else {
             setErrorText('');
+            userData.name = input;
 
-            let userData = {
-                name: input,
+
+            if (!userData.roomId) {
+                let URLToLeaderPage = `/LeadersChoice/${objectToURL(userData)}`;
+                Router.push('/LeadersChoice/[user]', URLToLeaderPage);
+            } else {
+                let URLToGamePage = `/Game/${objectToURL(userData)}`;
+                Router.push('/Game/[user]', URLToGamePage);
             }
-
-            let URLToLeaderPage = `/LeadersChoice/${objectToURL(userData)}`;
-            Router.push('/LeadersChoice/[user]', URLToLeaderPage);
+    
         }
     }
 
@@ -42,37 +54,8 @@ export default function LoginForm() {
             <form className={classes.wrapper} onSubmit={(e) => handleSubmit(e)} onChange={() => handleChange()}>
                 <InputError text={errorText} />
                 <NameInput input={input} setInput={setInput} />
-                <SubmitBTN />
+                <SubmitBTN submitBTNText={submitBTNText}/>
             </form >
         </>
     )
 }
-
-
-
-    // const axios = require('axios');
-    // const router = useRouter();
-    // axios.get('https://jsonplaceholder.typicode.com/todos/1')
-    //     .then(function (response) {
-    //         // handle success
-    //         console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //         // handle error
-    //         console.log(error);
-    //     })
-
-    // useEffect(() => {
-    //     setTimeout(() => router.push('/game'), 3000)
-
-    // }, [])
-
-
-// axios.get(host)
-//     .then(response => console.log("response", response.data))
-
-
-
-// import Link from 'next/link';
-// import axios from 'axios';
-// import host from '../portHostData/portHostData'

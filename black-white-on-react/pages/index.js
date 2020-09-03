@@ -1,9 +1,25 @@
 import LoginForm from '../components/loginForm/loginForm.js';
+import { objectFromURL } from '../components/encodeDecodeURL/encodeDecodeURL.js';
 
-export default function LoginPage() {
+export default function LoginPage({ userData }) {
     return (
         <>
-            <LoginForm />
+            <LoginForm userData={userData} />
         </>
     )
+}
+
+
+
+export async function getServerSideProps(context) {
+    let userData = {};
+
+    if (context.query.user) {
+        userData = objectFromURL(context.query.user);
+    }
+
+
+    return {
+        props: { userData },
+    }
 }

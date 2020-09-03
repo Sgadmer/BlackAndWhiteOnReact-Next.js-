@@ -2,6 +2,7 @@ $brightColor: white;
 
 .backGround {
   background: url(../images/bg.png) no-repeat;
+  transform: scale(1.23);
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -19,6 +20,34 @@ $brightColor: white;
   align-items: center;
   z-index: 2;
   perspective: 10rem;
+}
+
+.userName {
+  color: red;
+  font-size: 2.1vw;
+  position: absolute;
+  text-align: center;
+}
+
+.userName1 {
+  transform: translate3d(-49rem, 3.25rem, 0) skew(0, -8deg) rotate(1deg)
+    scale(0.65);
+}
+
+.userName2 {
+  transform: translate3d(-28.9rem, 0.9rem, 0) skew(0, -5deg) rotate(1deg)
+    scale(0.5);
+}
+
+.userName3 {
+  transform: translate3d(25.1rem, 1.15rem, 0) skew(0, 9deg) rotate(-5deg)
+    scale(0.47);
+}
+
+
+.userName4 {
+  transform: translate3d(47rem, 3.2rem, 0) skew(0deg, 8deg) rotate(-2deg)
+    scale(0.7);
 }
 
 @mixin cardsAnimation($trX, $trY, $trZ, $scale) {
@@ -58,7 +87,7 @@ $brightColor: white;
 
 .card {
   background: url(../images/card.png) no-repeat;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   background-size: 100% 100%;
   height: 160px;
   width: 90px;
@@ -68,55 +97,53 @@ $brightColor: white;
   justify-content: center;
   align-items: center;
   color: $brightColor;
+  z-index: 1;
 }
 
 .card1 {
-  @include cardsAnimation(-28rem, 2.6rem, 0, 1);
+  @include cardsAnimation(-51.5rem, 9.5rem, 0, 0.66);
   @extend .playersCardCommon;
-  transform: translate3d(-28rem, 2.6rem, 0) skewX(-10deg);
+  transform: translate3d(-51.5rem, 9.5rem, 0) skew(29deg, -13deg) scale(0.85);
   &:hover {
-    transform: translate3d(-28rem, 2.6rem, 0.5rem);
+    transform: translate3d(-50rem, 9rem, 0) skew(0, 0) scale(1.5);
   }
 }
 
 .card2 {
-  @include cardsAnimation(-20rem, 2.6rem, 0, 1);
+  @include cardsAnimation(-42rem, 7.7rem, 0, 0.75);
   @extend .playersCardCommon;
-  transform: translate3d(-20rem, 2.6rem, 0) skewX(-10deg);
-    &:hover {
-    transform: translate3d(-20rem, 2.6rem, 0.3rem);
+  transform: translate3d(-42rem, 7.7rem, 0) skew(29deg, -11deg) scale(0.75);
+  &:hover {
+    transform: translate3d(-42rem, 7.7rem, 0) skew(0, 0) scale(1.5);
   }
 }
 
 .card3 {
-  @include cardsAnimation(-23rem, -7rem, 0, .8);
-  transform: translate3d(-23rem, -7rem, 0) skewX(-10deg) scale(.8);
+  @include cardsAnimation(-31rem, 5.3rem, 0, 0.64);
+  transform: translate3d(-31rem, 5.3rem, 0) skew(23deg, -8deg) scale(0.64);
 }
 
 .card4 {
-   @include cardsAnimation(-16rem, -7rem, 0, .8);
-  transform: translate3d(-16rem, -7rem, 0) skewX(-10deg) scale(.8);
-
+  @include cardsAnimation(-31rem, 5.3rem, 0, 0.64);
+  transform: translate3d(-25rem, 4.5rem, 0) skew(23deg, -8deg) scale(0.6);
 }
 
 .card5 {
-   @include cardsAnimation(17rem, -6.9rem, 0, .8);
-  transform: translate3d(17rem, -6.9rem, 0) skewX(3deg) scale(.8);
+  @include cardsAnimation(20.5rem, 4.8rem, 0, 0.64);
+  transform: translate3d(20.5rem, 4.8rem, 0) skew(-24deg, 8deg) scale(0.6);
 }
 
 .card6 {
-  @include cardsAnimation(24rem, -6.9rem, 0, .8);
-  transform: translate3d(24rem, -6.9rem, 0) skewX(3deg) scale(.8);
+  @include cardsAnimation(26rem, 5.3rem, 0, 0.64);
+  transform: translate3d(26rem, 5.5rem, 0) skew(-24deg, 8deg) scale(0.64);
 }
-
 
 .card7 {
-  @include cardsAnimation(20rem, 2.8rem, 0, 1);
-  transform: translate3d(20rem, 2.8rem, 0) skewX(3deg) scale(1);
+   @include cardsAnimation(40rem, 7.5rem, 0, 0.64);
+  transform: translate3d(40rem, 7.5rem, 0) skew(-24deg, 10deg) scale(0.75);
 }
 
-
 .card8 {
-  @include cardsAnimation(29rem, 2.8rem, 0, 1);
-  transform: translate3d(29rem, 2.8rem, 0) skewX(3deg) scale(1);
+  @include cardsAnimation(40rem, 7.5rem, 0, 0.64);
+  transform: translate3d(50rem, 9.2rem, 0) skew(-24deg, 10deg) scale(0.83);
 }
