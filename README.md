@@ -9,9 +9,8 @@
  +Различные небольшие библиотеки
  
 ## -Как запустить проект-
- 1) Введите в консоль IDE
-## git clone https://github.com/Sgadmer/BlackAndWhiteOnReact-Next.js-.git
-2) Откройте в вашем IDE папку black-white-on-react
+1) Скачайте проект любым удобным способом
+2) Откройте в вашем IDE папку black-white-on-react (там должен быть файл server.js)
 3) Введите в консоль
 ## npm install
 4) Дождитесь конца установки
