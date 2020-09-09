@@ -16,7 +16,6 @@
     "express": "^4.17.1",
     "next": "9.4.4",
     "next-base64": "github:afeiship/next-base64",
-    "nodemon": "^2.0.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-redux": "^7.2.0",
@@ -29,6 +28,7 @@
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.4",
     "@babel/node": "^7.10.5",
-    "@babel/preset-env": "^7.11.0"
+    "@babel/preset-env": "^7.11.0",
+    "nodemon": "^2.0.4"
   }
 }

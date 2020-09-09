@@ -5,6 +5,7 @@ import NameInput from './nameInput.js'
 import SubmitBTN from './submitBTN';
 import InputError from './inputError';
 import { objectToURL } from '../encodeDecodeURL/encodeDecodeURL.js'
+import connectSocket from '../socket/socket';
 
 
 export default function LoginForm({ userData }) {
@@ -38,10 +39,23 @@ export default function LoginForm({ userData }) {
                 let URLToLeaderPage = `/LeadersChoice/${objectToURL(userData)}`;
                 Router.push('/LeadersChoice/[user]', URLToLeaderPage);
             } else {
-                let URLToGamePage = `/Game/${objectToURL(userData)}`;
-                Router.push('/Game/[user]', URLToGamePage);
+
+                let socket = connectSocket();
+
+
+                setErrorText('Проверяем имя');
+                socket.emit('checkNameOnBusy', userData.roomId, userData.name);
+                socket.on('checkNameRes', ({ res }) => {
+                    if (res) {
+                        setErrorText('Имя занято');
+                    } else {
+                        setErrorText('');
+                        let URLToGamePage = `/Game/${objectToURL(userData)}`;
+                        Router.push('/Game/[user]', URLToGamePage);
+                    }
+                })
             }
-    
+
         }
     }
 
@@ -54,7 +68,7 @@ export default function LoginForm({ userData }) {
             <form className={classes.wrapper} onSubmit={(e) => handleSubmit(e)} onChange={() => handleChange()}>
                 <InputError text={errorText} />
                 <NameInput input={input} setInput={setInput} />
-                <SubmitBTN submitBTNText={submitBTNText}/>
+                <SubmitBTN submitBTNText={submitBTNText} />
             </form >
         </>
     )

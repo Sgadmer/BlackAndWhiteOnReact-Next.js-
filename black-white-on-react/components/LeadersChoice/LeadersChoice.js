@@ -5,12 +5,14 @@ import Router from 'next/router';
 export default function LeadersChoiceComponent({ userData }) {
 
 
-
     function onChoosingLeader(Leader) {
         userData.leader = Leader;
 
+
         let URLToNumberOfPlayersPage = `/NumberOfPlayers/${objectToURL(userData)}`;
         Router.push('/NumberOfPlayers/[user]', URLToNumberOfPlayersPage);
+
+
     }
 
     return (
@@ -21,7 +23,7 @@ export default function LeadersChoiceComponent({ userData }) {
                 <div className={classes.wrapperCards}>
                     <div
                         className={classes.ChoiceCard}
-                         /*onClick={() => onChoosingLeader('player')}*/>
+                    >
                         <h1>Ведущий - игрок</h1>
                         <small className={classes.dontWorking}>Пока не работает :)</small></div>
                     <div className={classes.ChoiceCard} onClick={() => onChoosingLeader('bot')}><h1>Ведущий - бот</h1></div>
@@ -30,5 +32,6 @@ export default function LeadersChoiceComponent({ userData }) {
             </div>
         </>
     )
+
 }
 

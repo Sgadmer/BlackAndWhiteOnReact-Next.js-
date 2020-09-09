@@ -56,29 +56,21 @@ $brightColor: white;
   position: absolute;
   right: -33%;
   top: 0;
-  z-index: 99;
+  z-index: 2;
 
   &::after {
     content: "";
-    width: 25px;
-    height: 25px;
-    background-color: $brightColor;
     position: absolute;
-    left: -5px;
-    top: 8px;
-    transform: rotate(45deg);
-    z-index: 1;
-    -webkit-transform: rotate(45deg);
-    -moz-transform: rotate(45deg);
-    -ms-transform: rotate(45deg);
-    -o-transform: rotate(45deg);
+    left: -30px;
+    border: 20px solid transparent;
+    border-right: 20px solid $brightColor;
   }
 }
 
 .startGameBTN {
   width: 605px;
   height: 111px;
-  transition: all .45s;
+  transition: all 0.45s;
 
   @extend %commonStyles;
   @extend %text;

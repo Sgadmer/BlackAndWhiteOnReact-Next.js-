@@ -12,4 +12,14 @@ body {
   font-family: impact;
   font-style: normal;
   font-weight: normal;
+
+  overflow: hidden;
+  margin:0 auto;
+}
+
+
+.cardHovered {
+  -webkit-box-shadow: 0px 0px 40px 3px rgb(255, 0, 0);
+  -moz-box-shadow: 0px 0px 40px 3px rgb(255, 0, 0);
+  box-shadow: 0px 0px 40px 3px rgb(255, 0, 0);
 }

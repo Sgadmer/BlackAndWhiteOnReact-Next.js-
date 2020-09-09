@@ -3,8 +3,8 @@ $brightColor: white;
 .backGround {
   background: url(../images/bg.png) no-repeat;
   transform: scale(1.23);
-  width: 100vw;
-  height: 100vh;
+  width: 1920px;
+  height: 1080px;
   overflow: hidden;
   z-index: 1;
 }
@@ -23,30 +23,29 @@ $brightColor: white;
 }
 
 .userName {
-  color: red;
+  color: $brightColor;
   font-size: 2.1vw;
   position: absolute;
   text-align: center;
 }
 
 .userName1 {
-  transform: translate3d(-49rem, 3.25rem, 0) skew(0, -8deg) rotate(1deg)
+  transform: translate3d(-48.5rem, 2.5rem, 0) skew(0, -8deg) rotate(1deg)
     scale(0.65);
 }
 
 .userName2 {
-  transform: translate3d(-28.9rem, 0.9rem, 0) skew(0, -5deg) rotate(1deg)
+  transform: translate3d(-28.4rem, 0, 0) skew(0, -5deg) rotate(1deg)
     scale(0.5);
 }
 
 .userName3 {
-  transform: translate3d(25.1rem, 1.15rem, 0) skew(0, 9deg) rotate(-5deg)
+  transform: translate3d(25.6rem, .4rem, 0) skew(0, 9deg) rotate(-5deg)
     scale(0.47);
 }
 
-
 .userName4 {
-  transform: translate3d(47rem, 3.2rem, 0) skew(0deg, 8deg) rotate(-2deg)
+  transform: translate3d(47.5rem, 2.3rem, 0) skew(0deg, 7deg) rotate(-2deg)
     scale(0.7);
 }
 
@@ -69,9 +68,15 @@ $brightColor: white;
   }
 }
 
+.cardHovered {
+  -webkit-box-shadow: 0px 0px 19px 3px rgba(255, 255, 255, 1);
+  -moz-box-shadow: 0px 0px 19px 3px rgba(255, 255, 255, 1);
+  box-shadow: 0px 0px 19px 3px rgba(255, 255, 255, 1);
+}
+
 .playersCardCommon {
   cursor: pointer;
-  transition: all 0.5s;
+  transition: transform 0.5s;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -79,9 +84,7 @@ $brightColor: white;
   -ms-user-select: none;
   user-select: none;
   &:hover {
-    -webkit-box-shadow: 0px 0px 19px 3px rgba(255, 255, 255, 1);
-    -moz-box-shadow: 0px 0px 19px 3px rgba(255, 255, 255, 1);
-    box-shadow: 0px 0px 19px 3px rgba(255, 255, 255, 1);
+    @extend .cardHovered;
   }
 }
 
@@ -100,50 +103,60 @@ $brightColor: white;
   z-index: 1;
 }
 
+.card[cardHovered="true"] {
+  -webkit-box-shadow: 0px 0px 40px 3px rgb(255, 0, 0);
+  -moz-box-shadow: 0px 0px 40px 3px rgb(255, 0, 0);
+  box-shadow: 0px 0px 40px 3px rgb(255, 0, 0);
+}
+
 .card1 {
-  @include cardsAnimation(-51.5rem, 9.5rem, 0, 0.66);
+  @include cardsAnimation(-53rem, 9.3rem, 0, 0.66);
   @extend .playersCardCommon;
-  transform: translate3d(-51.5rem, 9.5rem, 0) skew(29deg, -13deg) scale(0.85);
+  transform: translate3d(-53rem, 9.3rem, 0) skew(29deg, -13deg) scale(0.85);
   &:hover {
-    transform: translate3d(-50rem, 9rem, 0) skew(0, 0) scale(1.5);
+    transform: translate3d(-53rem,9.3rem, 0) skew(0, 0) scale(1.5);
   }
 }
 
 .card2 {
-  @include cardsAnimation(-42rem, 7.7rem, 0, 0.75);
+  @include cardsAnimation(-40.5rem, 6.8rem, 0, 0.75);
   @extend .playersCardCommon;
-  transform: translate3d(-42rem, 7.7rem, 0) skew(29deg, -11deg) scale(0.75);
+  transform: translate3d(-40.5rem, 6.8rem, 0) skew(29deg, -11deg) rotate(-2deg)
+    scale(0.73);
   &:hover {
-    transform: translate3d(-42rem, 7.7rem, 0) skew(0, 0) scale(1.5);
+    transform: translate3d(-40.5rem, 6.8rem, 0) skew(0, 0) scale(1.5);
   }
 }
 
 .card3 {
-  @include cardsAnimation(-31rem, 5.3rem, 0, 0.64);
-  transform: translate3d(-31rem, 5.3rem, 0) skew(23deg, -8deg) scale(0.64);
+  @include cardsAnimation(-32.5rem, 5rem, 0, 0.64);
+  transform: translate3d(-32.5rem, 5rem, 0) skew(23deg, -8deg) scale(0.64);
 }
 
 .card4 {
-  @include cardsAnimation(-31rem, 5.3rem, 0, 0.64);
-  transform: translate3d(-25rem, 4.5rem, 0) skew(23deg, -8deg) scale(0.6);
+  @include cardsAnimation(-22rem, 3.7rem, 0, 0.64);
+  transform: translate3d(-22rem, 3.7rem, 0) skew(23deg, -8deg) rotate(-2deg)
+    scale(0.57);
 }
 
 .card5 {
-  @include cardsAnimation(20.5rem, 4.8rem, 0, 0.64);
-  transform: translate3d(20.5rem, 4.8rem, 0) skew(-24deg, 8deg) scale(0.6);
+  @include cardsAnimation(19.5rem, 3.8rem, 0, 0.64);
+  transform: translate3d(19.5rem, 3.8rem, 0) skew(-24deg, 8deg) rotate(2deg)
+    scale(0.57);
 }
 
 .card6 {
-  @include cardsAnimation(26rem, 5.3rem, 0, 0.64);
-  transform: translate3d(26rem, 5.5rem, 0) skew(-24deg, 8deg) scale(0.64);
+  @include cardsAnimation(29rem, 5rem, 0, 0.64);
+  transform: translate3d(29rem, 5rem, 0) skew(-24deg, 8deg) rotate(2deg)
+    scale(0.64);
 }
 
 .card7 {
-   @include cardsAnimation(40rem, 7.5rem, 0, 0.64);
-  transform: translate3d(40rem, 7.5rem, 0) skew(-24deg, 10deg) scale(0.75);
+  @include cardsAnimation(38.6rem, 6.6rem, 0, 0.64);
+  transform: translate3d(38.6rem, 6.6rem, 0) skew(-27deg, 10deg) scale(0.7);
 }
 
 .card8 {
-  @include cardsAnimation(40rem, 7.5rem, 0, 0.64);
-  transform: translate3d(50rem, 9.2rem, 0) skew(-24deg, 10deg) scale(0.83);
+  @include cardsAnimation(52.5rem, 8.8rem, 0, 0.64);
+  transform: translate3d(52.5rem, 8.8rem, 0) skew(-27deg, 10deg) scale(0.82);
 }
