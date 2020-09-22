@@ -1,4 +1,4 @@
-import LoginForm from '../components/loginForm/loginForm.js';
+import LoginForm from '../components/loginForm/loginForm.jsx';
 import { objectFromURL } from '../components/encodeDecodeURL/encodeDecodeURL.js';
 
 export default function LoginPage({ userData }) {

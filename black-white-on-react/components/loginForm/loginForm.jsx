@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router'
 import classes from '../../styles/index.module.scss'
-import NameInput from './nameInput.js'
+import NameInput from './nameInput.jsx'
 import SubmitBTN from './submitBTN';
 import InputError from './inputError';
 import { objectToURL } from '../encodeDecodeURL/encodeDecodeURL.js'

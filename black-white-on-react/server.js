@@ -5,7 +5,7 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const port = 8080;
-const { randomInteger } = require('./components/Game/getRandomINT');
+const { randomInteger } = require('./components/Game/getRandomINT.js');
 
 
 const rooms = new Map();

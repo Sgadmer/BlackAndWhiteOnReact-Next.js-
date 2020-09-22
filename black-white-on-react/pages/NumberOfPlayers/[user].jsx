@@ -1,4 +1,4 @@
-import NumberOfPlayersComponent from "../../components/NumberOfPlayers/NumberOfPlayers.js";
+import NumberOfPlayersComponent from "../../components/NumberOfPlayers/NumberOfPlayers.jsx";
 import { objectFromURL } from "../../components/encodeDecodeURL/encodeDecodeURL.js";
 
 
