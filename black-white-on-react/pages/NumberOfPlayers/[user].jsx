@@ -6,9 +6,7 @@ import { objectFromURL } from "../../components/encodeDecodeURL/encodeDecodeURL.
 export default function NumberOfPlayersPage({ userData }) {
 
     return (
-        <>
             <NumberOfPlayersComponent userData={userData} />
-        </>
     )
 }
 

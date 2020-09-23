@@ -4,9 +4,7 @@ import { objectFromURL } from "../../components/encodeDecodeURL/encodeDecodeURL"
 
 export default function LoginPage({ userData }) {
     return (
-        <>
             <LoginForm userData={userData} />
-        </>
     )
 }
 

@@ -5,9 +5,7 @@ export default function GamePage({ userData }) {
 
 
     return (
-        <>
             <GameComponent userData={userData} />
-        </>
     )
 }
 

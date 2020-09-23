@@ -7,9 +7,7 @@ export default function LeadersChoicePage({userData}) {
 
 
     return (
-        <>
             <LeadersChoiceComponent  userData={userData} />
-        </>
     )
 }
 
