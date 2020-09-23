@@ -74,15 +74,15 @@ export default function GameComponent({ userData }) {
 
     if (!isReadyToGame) {
         return (
-            <>
+           
                 <Loader loadText={loadText} URLforOtherPlayers={URLforOtherPlayers} URLcopyBTNText={URLcopyBTNText} />
-            </>
+          
         )
     } else {
         return (
-            <>
+           
                 <GameTableComponent userData={userData} socket={socket} />
-            </>
+           
         )
     }
 

@@ -13,8 +13,8 @@ export default function NumberOfPlayersComponent({ userData }) {
         userData.numberOfPlayers = Number;
 
         setisNumberChoosen(true);
-            let URLToGamePage = `/Game/${objectToURL(userData)}`;
-            Router.push('/Game/[user]', URLToGamePage);
+        let URLToGamePage = `/Game/${objectToURL(userData)}`;
+        Router.push('/Game/[user]', URLToGamePage);
     }
 
 
@@ -36,11 +36,11 @@ export default function NumberOfPlayersComponent({ userData }) {
         )
     } else {
         return (
-            <>
 
-                <Loader loadText={'Подключаемся к серверу'} />
 
-            </>
+            <Loader loadText={'Подключаемся к серверу'} />
+
+
         )
     }
 }
