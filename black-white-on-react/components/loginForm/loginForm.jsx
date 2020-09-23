@@ -1,16 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Router from "next/router";
 import classes from "../../styles/index.module.scss";
 import NameInput from "./nameInput.jsx";
 import SubmitBTN from "./submitBTN";
 import InputError from "./inputError";
 import { objectToURL } from "../encodeDecodeURL/encodeDecodeURL.js";
-import connectSocket from "../socket/socket";
+import { UseSocket } from "../../pages/SocketContext/SocketContext";
+// import connectSocket from "../socket/socket";
 
 export default function LoginForm({ userData }) {
   const [errorText, setErrorText] = useState("");
   const [input, setInput] = useState("");
   const [submitBTNText, setsubmitBTNText] = useState("");
+  let socket = UseSocket();
 
   useEffect(() => {
     if (!userData.roomId) {
@@ -18,7 +20,6 @@ export default function LoginForm({ userData }) {
     } else {
       setsubmitBTNText("Присоединиться");
     }
-    console.log(`Changed`);
   }, [userData.roomId]); //Вариант с [] в официальной документации считают не очень хорошим, поэтому оставил [userData.roomId]
 
   function handleSubmit(e) {
@@ -35,7 +36,6 @@ export default function LoginForm({ userData }) {
         let URLToLeaderPage = `/LeadersChoice/${objectToURL(userData)}`;
         Router.push("/LeadersChoice/[user]", URLToLeaderPage);
       } else {
-        let socket = connectSocket();
 
         setErrorText("Проверяем имя");
         socket.emit("checkNameOnBusy", userData.roomId, userData.name);

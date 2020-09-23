@@ -1,13 +1,13 @@
 import Loader from "./loader";
 import { useState, useEffect } from 'react';
-import connectSocket from "../socket/socket";
 import { useRouter } from 'next/router';
 import createURLforOtherPlayers from "./createURLForOtherPlayers";
 import GameTableComponent from "./GameTable/GameTable";
 import Router from 'next/router'
+import { UseSocket } from "../../pages/SocketContext/SocketContext";
 
 export default function GameComponent({ userData }) {
-    const router = useRouter()
+    const router = useRouter();
 
     console.log(userData);
 
@@ -15,7 +15,7 @@ export default function GameComponent({ userData }) {
     const [loadText, setLoadText] = useState("Подключаемся к серверу");
     const [URLforOtherPlayers, setURLforOtherPlayers] = useState("");
     const [URLcopyBTNText, setcopyBTNText] = useState("");
-    const [socket, setSocket] = useState(() => connectSocket())
+    const [socket, setSocket] = useState(UseSocket());
 
     useEffect(() => {
 
