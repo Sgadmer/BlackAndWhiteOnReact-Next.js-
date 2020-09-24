@@ -1,26 +1,27 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Router from "next/router";
 import classes from "../../styles/index.module.scss";
 import NameInput from "./nameInput.jsx";
 import SubmitBTN from "./submitBTN";
 import InputError from "./inputError";
-import { objectToURL } from "../encodeDecodeURL/encodeDecodeURL.js";
-import { UseSocket } from "../../pages/SocketContext/SocketContext";
-// import connectSocket from "../socket/socket";
+import { useSocket } from "../../servicesAndUtilities/SocketContext";
+import { getSessionStorage, setSessionStorage } from "../../servicesAndUtilities/sessionStorageHelper";
 
-export default function LoginForm({ userData }) {
+
+export default function LoginForm({ roomID }) {
   const [errorText, setErrorText] = useState("");
   const [input, setInput] = useState("");
   const [submitBTNText, setsubmitBTNText] = useState("");
-  let socket = UseSocket();
+  let socket = useSocket();
+  let userData = {};
 
   useEffect(() => {
-    if (!userData.roomId) {
+    if (!roomID) {
       setsubmitBTNText("Начать игру");
     } else {
       setsubmitBTNText("Присоединиться");
     }
-  }, [userData.roomId]); //Вариант с [] в официальной документации считают не очень хорошим, поэтому оставил [userData.roomId]
+  }, [roomID]); //Вариант с [] в  документации считают не очень хорошим, поэтому оставил [userData.roomId]
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -31,21 +32,20 @@ export default function LoginForm({ userData }) {
     } else {
       setErrorText("");
       userData.name = input;
+      userData.roomId = roomID;
+      setSessionStorage(userData);
 
-      if (!userData.roomId) {
-        let URLToLeaderPage = `/LeadersChoice/${objectToURL(userData)}`;
-        Router.push("/LeadersChoice/[user]", URLToLeaderPage);
+      if (!roomID) {
+        Router.push("/LeadersChoice");
       } else {
-
         setErrorText("Проверяем имя");
-        socket.emit("checkNameOnBusy", userData.roomId, userData.name);
+        socket.emit("checkNameOnBusy", roomID, userData.name);
         socket.on("checkNameRes", ({ res }) => {
           if (res) {
             setErrorText("Имя занято");
           } else {
             setErrorText("");
-            let URLToGamePage = `/Game/${objectToURL(userData)}`;
-            Router.push("/Game/[user]", URLToGamePage);
+            Router.push("/Game");
           }
         });
       }

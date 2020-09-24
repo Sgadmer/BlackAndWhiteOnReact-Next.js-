@@ -1,89 +1,91 @@
 import Loader from "./loader";
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import createURLforOtherPlayers from "./createURLForOtherPlayers";
+import { useState, useEffect } from "react";
+import createURLforOtherPlayers from "../../servicesAndUtilities/createURLForOtherPlayers";
 import GameTableComponent from "./GameTable/GameTable";
-import Router from 'next/router'
-import { UseSocket } from "../../pages/SocketContext/SocketContext";
+import Router from "next/router";
+import { useSocket } from "../../servicesAndUtilities/SocketContext";
+import {
+  getSessionStorage,
+  setSessionStorage,
+} from "../../servicesAndUtilities/sessionStorageHelper";
+import createMD5 from "../../servicesAndUtilities/createMD5";
 
-export default function GameComponent({ userData }) {
-    const router = useRouter();
+export default function GameComponent() {
+  const [isReadyToGame, setisReadyToGame] = useState(false);
+  const [loadText, setLoadText] = useState("Подключаемся к серверу");
+  const [URLforOtherPlayers, setURLforOtherPlayers] = useState("");
+  const [URLcopyBTNText, setcopyBTNText] = useState("");
+  const socket = useSocket();
+  let userData = getSessionStorage();
+  setSessionStorage(userData);
 
-    console.log(userData);
+  useEffect(() => {
+    console.log(socket);
 
-    const [isReadyToGame, setisReadyToGame] = useState(false);
-    const [loadText, setLoadText] = useState("Подключаемся к серверу");
-    const [URLforOtherPlayers, setURLforOtherPlayers] = useState("");
-    const [URLcopyBTNText, setcopyBTNText] = useState("");
-    const [socket, setSocket] = useState(UseSocket());
+    const roomIdMD5 = createMD5(socket);
+    if (!userData.roomId) {
+      setLoadText("Создаём комнату");
+      socket.emit("createRoom", userData, roomIdMD5);
 
-    useEffect(() => {
-
+      socket.on("roomCreated", () => {
         if (!userData.roomId) {
-            socket.on('socketConnected', () => {
-                setLoadText('Создаём комнату')
-
-                socket.emit('createRoom', userData);
-            });
-
-            socket.on('roomCreated', () => {
-                userData.roomId = socket.id;
-                socket.emit('joinRoom', userData);
-            });
-        } else {
-            setLoadText('Подключаемся к комнате')
-            socket.emit('joinRoom', userData);
+          userData.roomId = roomIdMD5;
+          setSessionStorage(userData);
+          console.log(getSessionStorage());
         }
 
-
-        socket.on('userJoin_UserLeave', ({ actualNumberOfPlayers, numberOfPlayers }) => {
-            setLoadText(`Игроков в комнате ${actualNumberOfPlayers} / ${numberOfPlayers}`)
-            let playersURL = createURLforOtherPlayers(userData);
-            if (actualNumberOfPlayers == 1) {
-                setURLforOtherPlayers(playersURL)
-                setcopyBTNText('Скопировать ссылку')
-            }
-
-            if (actualNumberOfPlayers == numberOfPlayers) {
-                setLoadText('Начинаем игру!')
-
-                // setTimeout(() => {
-                    setisReadyToGame(true)
-                // }, 1500)
-            }
-        })
-
-
-
-        socket.on('roomOverfill', () => {
-            let localCount = 10;
-            let pushTimer = setInterval(() => {
-                localCount--;
-                setLoadText(`Комната переполненна, на главную через ${localCount}`)
-
-                if (localCount == 0) {
-                    clearInterval(pushTimer)
-                    Router.push('/');
-                }
-            }, 1000);
-        })
-
-    }, []);
-
-
-
-    if (!isReadyToGame) {
-        return (
-           
-                <Loader loadText={loadText} URLforOtherPlayers={URLforOtherPlayers} URLcopyBTNText={URLcopyBTNText} />
-          
-        )
+        socket.emit("joinRoom", userData);
+      });
     } else {
-        return (
-           
-                <GameTableComponent userData={userData} socket={socket} />
-           
-        )
+      setLoadText("Подключаемся к комнате");
+      socket.emit("joinRoom", userData);
     }
 
+    socket.on(
+      "userJoin_UserLeave",
+      ({ actualNumberOfPlayers, numberOfPlayers }) => {
+        setLoadText(
+          `Игроков в комнате ${actualNumberOfPlayers} / ${numberOfPlayers}`
+        );
+        let playersURL = createURLforOtherPlayers(roomIdMD5);
+        if (actualNumberOfPlayers == 1) {
+          setURLforOtherPlayers(playersURL);
+          setcopyBTNText("Скопировать ссылку");
+        }
+
+        if (actualNumberOfPlayers == numberOfPlayers) {
+          setLoadText("Начинаем игру!");
+
+          // setTimeout(() => {
+          setisReadyToGame(true);
+          // }, 1500)
+        }
+      }
+    );
+
+    socket.on("roomOverfill", () => {
+      let localCount = 10;
+      let pushTimer = setInterval(() => {
+        localCount--;
+        setLoadText(`Комната переполненна, на главную через ${localCount}`);
+
+        if (localCount == 0) {
+          clearInterval(pushTimer);
+          Router.push("/");
+        }
+      }, 1000);
+    });
+  }, []);
+
+  if (!isReadyToGame) {
+    return (
+      <Loader
+        loadText={loadText}
+        URLforOtherPlayers={URLforOtherPlayers}
+        URLcopyBTNText={URLcopyBTNText}
+      />
+    );
+  } else {
+    return <GameTableComponent userData={userData} socket={socket} />;
+  }
 }

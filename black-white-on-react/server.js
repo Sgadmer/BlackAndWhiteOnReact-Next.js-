@@ -5,7 +5,7 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const port = 8080;
-const { randomInteger } = require('./components/Game/getRandomINT.js');
+const { randomInteger } = require('./servicesAndUtilities/getRandomINT');
 
 
 const rooms = new Map();
@@ -18,9 +18,9 @@ io.on('connection', (socket) => { //Присоединение игрока
         socket.emit('socketConnected', ''); //Оповещение клиента, о подключении игрока к серверу
     }, 1500);
 
-    socket.on('createRoom', (userData) => { //Создание игровой комнаты
+    socket.on('createRoom', (userData, roomIdMD5) => { //Создание игровой комнаты
         console.log(`players data `, userData);
-        rooms.set(socket.id, new Map([
+        rooms.set(roomIdMD5, new Map([
             ['numberOfPlayers', userData.numberOfPlayers],
             ['actualNumberOfPlayers', 0],
             ['numberOfReadyPlayers', 0],

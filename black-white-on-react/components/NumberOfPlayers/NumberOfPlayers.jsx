@@ -1,46 +1,54 @@
-import classes from '../../styles/choiceCards.module.scss';
-import { objectToURL } from '../encodeDecodeURL/encodeDecodeURL';
-import Router from 'next/router';
-import Loader from '../Game/loader';
-import { useState } from 'react';
+import classes from "../../styles/choiceCards.module.scss";
+import Router from "next/router";
+import Loader from "../Game/loader";
+import { useState } from "react";
+import { getSessionStorage, setSessionStorage } from "../../servicesAndUtilities/sessionStorageHelper";
 
-export default function NumberOfPlayersComponent({ userData }) {
-
-    const [isNumberChoosen, setisNumberChoosen] = useState(false);
-
-
-    function onChoosingNumber(Number) {
-        userData.numberOfPlayers = Number;
-
-        setisNumberChoosen(true);
-        let URLToGamePage = `/Game/${objectToURL(userData)}`;
-        Router.push('/Game/[user]', URLToGamePage);
-    }
+export default function NumberOfPlayersComponent() {
+  const [isNumberChoosen, setisNumberChoosen] = useState(false);
+  let userData = getSessionStorage();
 
 
+  function onChoosingNumber(Number) {
+    userData.numberOfPlayers = Number;
+      setSessionStorage(userData);
 
-    if (!isNumberChoosen) {
-        return (
-            <>
-                <div className={classes.wrapper}>
-                    <h1 className={classes.userName}>{userData.name}, выберите количество игроков</h1>
+    setisNumberChoosen(true);
+    Router.push("/Game");
+  }
 
-                    <div className={classes.wrapperCards}>
-                        <div className={classes.ChoiceCard} onClick={() => onChoosingNumber(2)}><h1>2</h1></div>
-                        <div className={classes.ChoiceCard} onClick={() => onChoosingNumber(3)}><h1>3</h1></div>
-                        <div className={classes.ChoiceCard} onClick={() => onChoosingNumber(4)}><h1>4</h1></div>
-                    </div>
+  if (!isNumberChoosen) {
+    return (
+      <>
+        <div className={classes.wrapper}>
+          <h1 className={classes.userName}>
+            {userData.name}, выберите количество игроков
+          </h1>
 
-                </div>
-            </>
-        )
-    } else {
-        return (
-
-
-            <Loader loadText={'Подключаемся к серверу'} />
-
-
-        )
-    }
+          <div className={classes.wrapperCards}>
+            <div
+              className={classes.ChoiceCard}
+              onClick={() => onChoosingNumber(2)}
+            >
+              <h1>2</h1>
+            </div>
+            <div
+              className={classes.ChoiceCard}
+              onClick={() => onChoosingNumber(3)}
+            >
+              <h1>3</h1>
+            </div>
+            <div
+              className={classes.ChoiceCard}
+              onClick={() => onChoosingNumber(4)}
+            >
+              <h1>4</h1>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  } else {
+    return <Loader loadText={"Подключаемся к серверу"} />;
+  }
 }
