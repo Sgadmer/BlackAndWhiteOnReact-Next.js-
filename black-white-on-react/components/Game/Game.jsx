@@ -17,7 +17,7 @@ export default function GameComponent() {
   const [URLcopyBTNText, setcopyBTNText] = useState("");
   const socket = useSocket();
   let userData = getSessionStorage();
-  setSessionStorage(userData);
+  console.log(userData);
 
   useEffect(() => {
     console.log(socket);
@@ -86,6 +86,6 @@ export default function GameComponent() {
       />
     );
   } else {
-    return <GameTableComponent userData={userData} socket={socket} />;
+    return <GameTableComponent />;
   }
 }

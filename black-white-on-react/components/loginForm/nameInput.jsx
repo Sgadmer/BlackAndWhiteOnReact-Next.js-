@@ -10,7 +10,7 @@ export default function NameInput({input, setInput}) {
     function inputValidation(e) {
         let value = e.currentTarget.value;
 
-        const mainValidEXP = /[^a-zA-Z]/gm;
+        const mainValidEXP = /[^a-zA-Zа-яА-Я]/gm;
 
         (value.length > 7) ? inputIsTooLong() : inputIsOkay();
 
@@ -32,7 +32,7 @@ export default function NameInput({input, setInput}) {
 
     return (
         <>
-            <input className={styles} onChange={(e) => inputValidation(e)} value={input} placeholder='Имя (на англ)' type="text" spellсheck="false" />
+            <input className={styles} onChange={(e) => inputValidation(e)} value={input} placeholder='Имя' type="text" spellсheck="false" />
             <InputError text={errorText} />
         </>
     )

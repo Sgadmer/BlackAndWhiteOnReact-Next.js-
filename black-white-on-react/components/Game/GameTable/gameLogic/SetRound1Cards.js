@@ -2,17 +2,18 @@ import classes from '../../../../styles/gameTable.module.scss';
 import { UserTableName, setUserName, CardText, setCardPosition } from "./cardsAndNamePlatesFiller";
 import classNames from 'classnames';
 import cardOnMouseEnter from './cardOnMouseEnter';
+import { getSessionStorage } from '../../../../servicesAndUtilities/sessionStorageHelper';
 
 export default function Round1Cards(
     userNamePlatesArray,
     cardsArray,
     socket,
     { card1, card2, names },
-    userData,
     setGameCards,
     setUserNameCards,
     playersTurnName) {
 
+    let userData = getSessionStorage();
     names = new Set(names);
     names.delete(userData.name);
     names = [...names]
