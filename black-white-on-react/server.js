@@ -16,7 +16,7 @@ const rooms = new Map();
 
 
 io.on('connection', (socket) => { //Присоединение игрока
-    
+
     console.log(`++socket Conected: ${socket.id}`);
     setTimeout(() => {
         socket.emit('socketConnected', ''); //Оповещение клиента, о подключении игрока к серверу
@@ -32,7 +32,7 @@ io.on('connection', (socket) => { //Присоединение игрока
 
     socket.on('playerReady', (userData) => playerReady(rooms, socket, userData, io));
 
-    socket.on('playerHoveredCard', ({ userData, cardPos }) => playerHoveredCard(socket, userData, cardPos));
+    socket.on('playerHoveredCard', ({ userData, cardPos, hoverCase }) => playerHoveredCard(socket, userData, cardPos, hoverCase));
 
     socket.on('disconnect', () => playerDisconnect(rooms, socket, io));
 });

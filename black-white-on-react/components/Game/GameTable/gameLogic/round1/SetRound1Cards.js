@@ -1,8 +1,9 @@
-import classes from '../../../../styles/gameTable.module.scss';
-import { UserTableName, setUserName, CardText, setCardPosition } from "./cardsAndNamePlatesFiller";
+import classes from '../../../../../styles/gameTable.module.scss';
+import { UserTableName, setUserName, CardText, setCardPosition } from "../commonLogic/cardsAndNamePlatesFiller";
 import classNames from 'classnames';
-import cardOnMouseEnter from './cardOnMouseEnter';
-import { getSessionStorage } from '../../../../servicesAndUtilities/sessionStorageHelper';
+import { getSessionStorage } from '../../../../../servicesAndUtilities/sessionStorageHelper';
+import hoverOperator from '../commonLogic/hoverUnhoverCard';
+import cardOnMouseHover from '../commonLogic/cardOnMouseHoverSocket';
 
 export default function Round1Cards(
     userNamePlatesArray,
@@ -11,7 +12,8 @@ export default function Round1Cards(
     { card1, card2, names },
     setGameCards,
     setUserNameCards,
-    playersTurnName) {
+    playersTurnName,
+    cardsRef) {
 
     let userData = getSessionStorage();
     names = new Set(names);
@@ -38,7 +40,9 @@ export default function Round1Cards(
                 cardposition={setCardPosition(i)}
                 key={i}
                 className={classNames(classes.card, classes[`card${i + 1}`])}
-                onMouseEnter={(e) => cardOnMouseEnter(e, socket, userData, playersTurnName)}>
+                onMouseEnter={(e) => cardOnMouseHover(e, socket, userData, playersTurnName, true)}
+                onMouseLeave={(e) => cardOnMouseHover(e, socket, userData, playersTurnName, false)}
+            >
 
                 {<CardText i={i} card1={card1} card2={card2} />}
             </div>);
@@ -50,9 +54,6 @@ export default function Round1Cards(
     cardsArray.reverse();
     setGameCards(cardsArray);
 
-    socket.on('hoverCardForOtherPlayers', ({ name, cardPos }) => {
-
-        alert(`${name} навелся на карту № ${cardPos}`);
-    });
+    socket.on('hoverCardForOtherPlayers', ({ name, cardPos, hoverCase }) => hoverOperator(name, cardPos, cardsRef, hoverCase));
 
 }

@@ -6,9 +6,9 @@ export default function GameTableComponent() {
 
 
     return (
-        <>
-            <div className={classes.backGround}></div>
-            <CardsComponent/>
-        </>
-    )
+      <>
+        <div className={classes.backGround}></div>
+        <CardsComponent />
+      </>
+    );
 }
