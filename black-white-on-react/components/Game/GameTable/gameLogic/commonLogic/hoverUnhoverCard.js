@@ -1,4 +1,4 @@
-export default function hoverOperator(name, cardPos, cardsRef, hoverCase ) {
+export default function hoverCardOperator(name, cardPos, cardsRef, hoverCase) {
 
     let cardsArrayNODE = cardsRef.current.children;
     let cardAttributes;

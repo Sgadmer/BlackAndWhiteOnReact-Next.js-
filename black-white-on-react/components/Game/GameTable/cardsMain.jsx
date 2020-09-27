@@ -6,13 +6,15 @@ import {
   setSessionStorage,
 } from "../../../servicesAndUtilities/sessionStorageHelper";
 import { useSocket } from "../../../servicesAndUtilities/SocketContext";
+import hoverNameOperator from "./gameLogic/commonLogic/hoverUnhoverName";
+import CardInputComponent from "./gameLogic/commonLogic/cardinput";
 
 export default function CardsComponent() {
   const [gameCards, setGameCards] = useState("");
   const [userNamePlates, setUserNameCards] = useState("");
   const [roundAlertion, setRoundAlertion] = useState("");
   const socket = useSocket();
-  const cardsRef = useRef(null);
+  const cardsAndNamesRef = useRef(null);
 
   let userData = getSessionStorage();
   let userNamePlatesArray = [];
@@ -29,6 +31,7 @@ export default function CardsComponent() {
 
         setTimeout(() => {
           setRoundAlertion(`Ходит ${name}`);
+          hoverNameOperator(name, cardsAndNamesRef);
 
           setTimeout(() => {
             setRoundAlertion("");
@@ -43,7 +46,7 @@ export default function CardsComponent() {
           setGameCards,
           setUserNameCards,
           name,
-          cardsRef
+          cardsAndNamesRef
         );
       });
     });
@@ -51,15 +54,16 @@ export default function CardsComponent() {
 
   return (
     <>
-      {
-        roundAlertion != '' &&
+      {roundAlertion != "" && (
         <div className={classes.roundAlertion}>{roundAlertion}</div>
-      }
+      )}
 
-      <div className={classes.cardsWrapper} ref={cardsRef}>
+      <div className={classes.cardsWrapper} ref={cardsAndNamesRef}>
         {userNamePlates}
         {gameCards}
       </div>
+
+      <CardInputComponent/>
     </>
   );
 }

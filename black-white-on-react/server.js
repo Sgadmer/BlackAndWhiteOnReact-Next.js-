@@ -10,6 +10,7 @@ const { getPlayersInfo } = require('./serverLogic/getPlayersInfo');
 const { playerReady } = require('./serverLogic/playerReady');
 const { playerHoveredCard } = require('./serverLogic/playerHoveredCard');
 const { playerDisconnect } = require('./serverLogic/playerDisconnect');
+const {changePlayerTurn} = require('./serverLogic/changePlayerTurn');
 
 
 const rooms = new Map();
@@ -30,7 +31,9 @@ io.on('connection', (socket) => { //Присоединение игрока
 
     socket.on('getPlayersInfo', (userData) => getPlayersInfo(rooms, socket, userData));
 
-    socket.on('playerReady', (userData) => playerReady(rooms, socket, userData, io));
+    socket.on('playerReady', (userData) => playerReady(rooms, userData, io));
+
+    socket.on('changePlayerTurn', (userData) => changePlayerTurn(rooms, userData, io));
 
     socket.on('playerHoveredCard', ({ userData, cardPos, hoverCase }) => playerHoveredCard(socket, userData, cardPos, hoverCase));
 

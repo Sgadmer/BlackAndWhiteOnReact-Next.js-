@@ -1,4 +1,4 @@
-const playerReady = (rooms, socket, userData, io) => { //Событие эмитируемое клиентом после получения данных игрока
+const playerReady = (rooms,  userData, io) => { //Событие эмитируемое клиентом после получения данных игрока
     let roomToJoin = rooms.get(userData.roomId);
     let numberOfReadyPlayers = roomToJoin.get('numberOfReadyPlayers');
     let names = roomToJoin.get('names');

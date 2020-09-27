@@ -13,7 +13,7 @@ export default function Round1Cards(
     setGameCards,
     setUserNameCards,
     playersTurnName,
-    cardsRef) {
+    cardsAndNamesRef) {
 
     let userData = getSessionStorage();
     names = new Set(names);
@@ -26,7 +26,10 @@ export default function Round1Cards(
         userNamePlatesArray.push(
             <div
                 key={i}
-                className={classNames(classes.userName, classes[`userName${i + 1}`])}>
+                className={classNames(classes.userName, classes[`userName${i + 1}`])}
+                cardtype={'namePlate'}
+                username={UserTableName({userData, i, names}) }
+            >
                 {<UserTableName userData={userData} i={i} names={names} />}
 
             </div>
@@ -54,6 +57,6 @@ export default function Round1Cards(
     cardsArray.reverse();
     setGameCards(cardsArray);
 
-    socket.on('hoverCardForOtherPlayers', ({ name, cardPos, hoverCase }) => hoverOperator(name, cardPos, cardsRef, hoverCase));
+    socket.on('hoverCardForOtherPlayers', ({ name, cardPos, hoverCase }) => hoverOperator(name, cardPos, cardsAndNamesRef, hoverCase));
 
 }
