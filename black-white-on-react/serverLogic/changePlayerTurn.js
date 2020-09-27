@@ -6,7 +6,6 @@ const changePlayerTurn = (rooms, userData, io) => {
 
         for (name of names) {
             if (!playersTurn.has(name)) {
-                console.log(names, name)
                 playersTurn.set(name, name)
                 io.to(userData.roomId).emit('resPlayerTurnName', name); 
                 break;

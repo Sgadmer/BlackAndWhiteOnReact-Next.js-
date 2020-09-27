@@ -5,8 +5,7 @@ import NameInput from "./nameInput.jsx";
 import SubmitBTN from "./submitBTN";
 import InputError from "./inputError";
 import { useSocket } from "../../servicesAndUtilities/SocketContext";
-import { getSessionStorage, setSessionStorage } from "../../servicesAndUtilities/sessionStorageHelper";
-
+import { setSessionStorage } from "../../servicesAndUtilities/sessionStorageHelper";
 
 export default function LoginForm({ roomID }) {
   const [errorText, setErrorText] = useState("");

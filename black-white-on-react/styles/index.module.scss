@@ -37,9 +37,7 @@ $brightColor: white;
 .inputErrorRed {
   @extend %commonStyles;
   @extend %text;
-
   color: red;
-
   width: 480px;
   height: 75px;
 }

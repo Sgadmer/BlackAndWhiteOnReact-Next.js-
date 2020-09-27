@@ -278,18 +278,74 @@ $ashColor: gray;
       max-height: 100px;
       padding-left: 1vw;
       color: $brightColor;
+      cursor: pointer;
 
       &::-webkit-input-placeholder {
-        color: rgba(255, 255, 255, 0.700);
+        color: rgba(255, 255, 255, 0.7);
       }
     }
 
-    .inputEnterBTN {
-      width: 5vw;
-      height: 5vw;
-      background-color: $ashColor;
-      border: 0.4vw solid $darkColor;
-      border-radius: 50%;
+    .inputSubmitBTN {
+      min-height: 9vh;
+      max-height: 100px;
+      min-width: 9vh;
+      max-width: 100px;
+      background-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-left: 0.4vw solid $brightColor;
+      border-radius: 0 10px 10px 0;
+      position: absolute;
+      right: 1.5vw;
+      margin: 1vw;
+      cursor: pointer;
+
+      .arrow {
+        position: relative;
+        width: 5vw;
+        height: 0.6vw;
+        background-color: $brightColor;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        left: 0.2vw;
+        display: block;
+      }
+      .arrow::after {
+        content: "";
+        position: absolute;
+        width: 2vw;
+        height: 0.5vw;
+        top: -0.55vw;
+        right: -0.5vw;
+        background-color: $brightColor;
+        transform: rotate(46deg);
+      }
+      .arrow::before {
+        content: "";
+        position: absolute;
+        width: 2vw;
+        height: 0.5vw;
+        top: 0.55vw;
+        right: -0.5vw;
+        background-color: $brightColor;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        transform: rotate(-46deg);
+      }
+
+      &:hover .arrow {
+        animation: arrowAnim 1s ease infinite;
+      }
+      @keyframes arrowAnim {
+        0% {
+          transform: translateX(0);
+        }
+        50% {
+          transform: translateX(0.5vw);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
     }
   }
 }

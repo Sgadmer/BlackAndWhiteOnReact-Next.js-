@@ -6,6 +6,7 @@ import hoverOperator from '../commonLogic/hoverUnhoverCard';
 import cardOnMouseHover from '../commonLogic/cardOnMouseHoverSocket';
 
 export default function Round1Cards(
+
     userNamePlatesArray,
     cardsArray,
     socket,
@@ -13,7 +14,8 @@ export default function Round1Cards(
     setGameCards,
     setUserNameCards,
     playersTurnName,
-    cardsAndNamesRef) {
+    cardsAndNamesRef,
+    cardsInput) {
 
     let userData = getSessionStorage();
     names = new Set(names);
@@ -28,13 +30,19 @@ export default function Round1Cards(
                 key={i}
                 className={classNames(classes.userName, classes[`userName${i + 1}`])}
                 cardtype={'namePlate'}
-                username={UserTableName({userData, i, names}) }
+                username={UserTableName({ userData, i, names })}
             >
                 {<UserTableName userData={userData} i={i} names={names} />}
 
             </div>
         );
     }
+
+    const changeCardsInputVisible = () => {
+        if (userData.name == playersTurnName) {
+            cardsInput.toggleCardsInput();
+        }
+    };
 
     for (let i = 0; i < userData.numberOfPlayers * 2; i++) {
 
@@ -45,10 +53,11 @@ export default function Round1Cards(
                 className={classNames(classes.card, classes[`card${i + 1}`])}
                 onMouseEnter={(e) => cardOnMouseHover(e, socket, userData, playersTurnName, true)}
                 onMouseLeave={(e) => cardOnMouseHover(e, socket, userData, playersTurnName, false)}
+                onClick={i < 2 ? changeCardsInputVisible : undefined}
             >
 
-                {<CardText i={i} card1={card1} card2={card2} />}
-            </div>);
+                {< CardText i={i} card1={card1} card2={card2} />}
+            </div >);
     }
 
     userNamePlatesArray.reverse();

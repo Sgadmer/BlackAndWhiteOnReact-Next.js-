@@ -7,7 +7,8 @@ import {
 } from "../../../servicesAndUtilities/sessionStorageHelper";
 import { useSocket } from "../../../servicesAndUtilities/SocketContext";
 import hoverNameOperator from "./gameLogic/commonLogic/hoverUnhoverName";
-import CardInputComponent from "./gameLogic/commonLogic/cardinput";
+import CardInputComponent from "./gameLogic/cardsInput/cardInput";
+import { useCardsInput } from "../../../servicesAndUtilities/cardsInputContext";
 
 export default function CardsComponent() {
   const [gameCards, setGameCards] = useState("");
@@ -20,6 +21,15 @@ export default function CardsComponent() {
   let userNamePlatesArray = [];
   let cardsArray = [];
 
+  let cardsInput = useCardsInput();
+
+  const handleRoundAlert = (message) => {
+    setRoundAlertion(message);
+    setTimeout(() => {
+      setRoundAlertion("");
+    }, 3000);
+  };
+
   useEffect(() => {
     socket.emit("getPlayersInfo", userData);
     socket.on("resPlayersInfo", (res) => {
@@ -30,12 +40,8 @@ export default function CardsComponent() {
         setRoundAlertion(`Раунд 1`);
 
         setTimeout(() => {
-          setRoundAlertion(`Ходит ${name}`);
+          handleRoundAlert(`Ходит ${name}`);
           hoverNameOperator(name, cardsAndNamesRef);
-
-          setTimeout(() => {
-            setRoundAlertion("");
-          }, 3000);
         }, 3000);
 
         Round1Cards(
@@ -46,7 +52,8 @@ export default function CardsComponent() {
           setGameCards,
           setUserNameCards,
           name,
-          cardsAndNamesRef
+          cardsAndNamesRef,
+          cardsInput
         );
       });
     });
@@ -54,7 +61,7 @@ export default function CardsComponent() {
 
   return (
     <>
-      {roundAlertion != "" && (
+      {roundAlertion && (
         <div className={classes.roundAlertion}>{roundAlertion}</div>
       )}
 
@@ -63,7 +70,7 @@ export default function CardsComponent() {
         {gameCards}
       </div>
 
-      <CardInputComponent/>
+      {cardsInput.visible && <CardInputComponent />}
     </>
   );
 }
