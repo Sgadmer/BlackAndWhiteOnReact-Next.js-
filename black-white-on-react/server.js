@@ -20,7 +20,6 @@ const rooms = new Map();
 
 io.on('connection', (socket) => { //Присоединение игрока
 
-    console.log(`++socket Conected: ${socket.id}`);
     setTimeout(() => {
         socket.emit('socketConnected', ''); //Оповещение клиента, о подключении игрока к серверу
     }, 1500);

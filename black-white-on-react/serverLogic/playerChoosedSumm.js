@@ -1,5 +1,7 @@
 const { changePlayerTurn } = require("./changePlayerTurn");
 
+
+//Помечает сыгранную карту игрока и ставит указанную игроком сумму на этой карту у других игроков
 const playerChoosedSumm = (rooms, socket, io, userData, summ) => {
     let currentRoom = rooms.get(userData.roomId);
     let playersTurnCounter = currentRoom.get('playersTurnCounter') + 1;
@@ -10,10 +12,12 @@ const playerChoosedSumm = (rooms, socket, io, userData, summ) => {
     socket.emit('markPlayedCardForCurrentPlayer', summ);
     socket.to(userData.roomId).emit('putSummOnCard', { usData: userData, summ });
 
-    if (isAllPlayersMoved) {
+    if (isAllPlayersMoved) { //Функция, после того как все игроки сделают ход
         playersTurnCounter = 0;
     }
 
+
+    //Функция, вызывающая смену игрока, после того как игрок сыграл все карты
     if (currentPlayerTurnCount == 2 && !isAllPlayersMoved) {
         currentPlayerTurnCount = 0;
         changePlayerTurn(rooms, io, userData);

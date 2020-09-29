@@ -1,4 +1,4 @@
-const changePlayerTurn = (rooms, io, userData) => {
+const changePlayerTurn = (rooms, io, userData) => { //Меняет ходящего игрока на следующего и оповещает клиенты
     let currentRoom = rooms.get(userData.roomId);
     let names = currentRoom.get('names');
     let playersTurn = currentRoom.get('playersTurn');
