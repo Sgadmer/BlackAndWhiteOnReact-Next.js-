@@ -14,6 +14,8 @@ export default function CardsComponent() {
   const [gameCards, setGameCards] = useState("");
   const [userNamePlates, setUserNameCards] = useState("");
   const [roundAlertion, setRoundAlertion] = useState("");
+  const [playersTurnName, setPlayersTurnName] = useState("");
+  const [isFirstTurn, setIsFirstTurn] = useState("true");
   const socket = useSocket();
   const cardsAndNamesRef = useRef(null);
 
@@ -37,12 +39,10 @@ export default function CardsComponent() {
       setSessionStorage(userData);
       socket.emit("playerReady", userData);
       socket.on("startRound", (name) => {
+        userData.playersTurnName = name;
+        setSessionStorage(userData);
+        setPlayersTurnName(name);
         setRoundAlertion(`Раунд 1`);
-
-        setTimeout(() => {
-          handleRoundAlert(`Ходит ${name}`);
-          hoverNameOperator(name, cardsAndNamesRef);
-        }, 3000);
 
         Round1Cards(
           userNamePlatesArray,
@@ -51,13 +51,31 @@ export default function CardsComponent() {
           res,
           setGameCards,
           setUserNameCards,
-          name,
           cardsAndNamesRef,
           cardsInput
         );
+
+        socket.on("changePlayerTurn", ({ name }) => {
+          userData.playersTurnName = name;
+          setSessionStorage(userData);
+          setPlayersTurnName(name);
+        });
       });
     });
   }, []);
+
+  useEffect(() => {
+    if (isFirstTurn) {
+      setTimeout(() => {
+        handleRoundAlert(`Ходит ${playersTurnName}`);
+        hoverNameOperator(playersTurnName, cardsAndNamesRef);
+        setIsFirstTurn(false);
+      }, 3100);
+    } else {
+      handleRoundAlert(`Ходит ${playersTurnName}`);
+      hoverNameOperator(playersTurnName, cardsAndNamesRef);
+    }
+  }, [playersTurnName]);
 
   return (
     <>

@@ -20,9 +20,6 @@ const joinRoom = (rooms, socket, userData, io) => { //Присоединение
 
         socket.join(userData.roomId);
 
-        console.log(`roomToJoin `);
-        console.log(roomToJoin);
-
         setTimeout(() => {
             io.to(userData.roomId).emit('userJoin_UserLeave', { //Оповещение всех игроков в комнате (при загрузке) о входе игрока в комнату
                 actualNumberOfPlayers: roomToJoin.get('actualNumberOfPlayers'),

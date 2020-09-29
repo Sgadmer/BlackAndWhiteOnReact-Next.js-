@@ -12,7 +12,7 @@ export default function Loader({ loadText, URLforOtherPlayers, URLcopyBTNText })
                 setcopyBTNText(`Ссылка скопирована`)
             })
             .catch(err => {
-                console.log('Failed to copy this text', err);
+                 throw Error(err);
             });
     }
 

@@ -10,7 +10,9 @@ const { getPlayersInfo } = require('./serverLogic/getPlayersInfo');
 const { playerReady } = require('./serverLogic/playerReady');
 const { playerHoveredCard } = require('./serverLogic/playerHoveredCard');
 const { playerDisconnect } = require('./serverLogic/playerDisconnect');
-const {changePlayerTurn} = require('./serverLogic/changePlayerTurn');
+const { changePlayerTurn } = require('./serverLogic/changePlayerTurn');
+const { playerChoosedSumm } = require('./serverLogic/playerChoosedSumm');
+
 
 
 const rooms = new Map();
@@ -37,6 +39,8 @@ io.on('connection', (socket) => { //Присоединение игрока
 
     socket.on('playerHoveredCard', ({ userData, cardPos, hoverCase }) => playerHoveredCard(socket, userData, cardPos, hoverCase));
 
+    socket.on('playerChoosedSumm', ({ userData, summ }) => playerChoosedSumm(rooms, socket, io, userData, summ));
+
     socket.on('disconnect', () => playerDisconnect(rooms, socket, io));
 });
 
@@ -44,6 +48,5 @@ server.listen(port, (err) => {//Оповещении об удачном или 
     if (err) {
         throw Error(err);
     }
-    console.log('!!!Server has been started!!!');
 })
 

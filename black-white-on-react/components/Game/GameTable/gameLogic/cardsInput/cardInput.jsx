@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useCardsInput } from "../../../../../servicesAndUtilities/cardsInputContext";
+import { getSessionStorage } from "../../../../../servicesAndUtilities/sessionStorageHelper";
+import { useSocket } from "../../../../../servicesAndUtilities/SocketContext";
 import classes from "../../../../../styles/gameTable.module.scss";
 
 export default function CardInputComponent() {
-  const [input, setInput] = useState("");
+  const [summ, setSumm] = useState("");
   let cardsInput = useCardsInput();
+  let userData = getSessionStorage();
+  const socket = useSocket();
 
-  function inputValidation(e) {
+  function summInputValidation(e) {
     const digitValidEXP = /\D+/gm;
 
     let value = e.currentTarget.value;
@@ -15,9 +19,26 @@ export default function CardInputComponent() {
     if (Number.isInteger(+value)) {
       if (+value > 99999) {
       } else {
-        setInput(value);
+        setSumm(value);
       }
     }
+  }
+
+  function submitSumm() {
+    if (summ) {
+      let summCopy = summ;
+      summCopy = ++summCopy;
+
+      if (Number.isInteger(summCopy) && summCopy > 0 && summCopy < 99999) {
+        socket.emit("playerChoosedSumm", { userData, summ: summCopy });
+        setSumm("");
+        handleClose();
+      }
+    }
+  }
+
+  function handleClose() {
+    cardsInput.toggleCardsInput();
   }
 
   return (
@@ -26,18 +47,18 @@ export default function CardInputComponent() {
         <div className={classes.inputAndBTNSWrapper}>
           <div
             className={classes.inputCloseBTN}
-            onClick={cardsInput.toggleCardsInput}
+            onClick={() => handleClose()}
           ></div>
           <input
             className={classes.inputSumm}
-            onChange={(e) => inputValidation(e)}
-            value={input}
+            onChange={(e) => summInputValidation(e)}
+            value={summ}
             type="text"
             spellсheck="false"
             placeholder={"Сумма"}
           />
-          <div className={classes.inputSubmitBTN}>
-            <div className={classes.arrow}/>
+          <div className={classes.inputSubmitBTN} onClick={() => submitSumm()}>
+            <div className={classes.arrow} />
           </div>
         </div>
       </div>

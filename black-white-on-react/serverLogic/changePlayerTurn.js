@@ -1,16 +1,17 @@
-const changePlayerTurn = (rooms, userData, io) => { 
-    let roomToJoin = rooms.get(userData.roomId);
-    let names = roomToJoin.get('names');
-    let playersTurn = roomToJoin.get('playersTurn');
+const changePlayerTurn = (rooms, io, userData) => {
+    let currentRoom = rooms.get(userData.roomId);
+    let names = currentRoom.get('names');
+    let playersTurn = currentRoom.get('playersTurn');
 
 
-        for (name of names) {
-            if (!playersTurn.has(name)) {
-                playersTurn.set(name, name)
-                io.to(userData.roomId).emit('resPlayerTurnName', name); 
-                break;
-            }
+    for (name of names) {
+        if (!playersTurn.has(name)) {
+            playersTurn.set(name, name);
+            currentRoom.set('playersTurnName', name);
+            io.to(userData.roomId).emit('changePlayerTurn', { name });
+            break;
         }
+    }
 
 
 }

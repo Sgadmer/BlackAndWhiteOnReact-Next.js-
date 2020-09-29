@@ -1,6 +1,7 @@
 $brightColor: white;
 $darkColor: black;
 $ashColor: gray;
+$bloodColor: red;
 
 .backGround {
   background: url(../images/bg.png) no-repeat;
@@ -67,13 +68,14 @@ $ashColor: gray;
 
 .userName {
   color: $brightColor;
-  font-size: 2.1vw;
+  font-size: 3rem;
   position: absolute;
   text-align: center;
+  pointer-events: none;
 }
 
 .userName[namePlateHovered="true"] {
-  color: red;
+  color: $bloodColor;
   transition: all 0.5s;
 }
 
@@ -146,16 +148,50 @@ $ashColor: gray;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   color: $brightColor;
   z-index: 1;
+  overflow: hidden;
 }
 
 .card[cardHovered="true"] {
-  -webkit-box-shadow: 0px 0px 40px 3px rgb(255, 0, 0);
-  -moz-box-shadow: 0px 0px 40px 3px rgb(255, 0, 0);
-  box-shadow: 0px 0px 40px 3px rgb(255, 0, 0);
+  -webkit-box-shadow: 0px 0px 40px 3px $bloodColor;
+  -moz-box-shadow: 0px 0px 40px 3px$bloodColor;
+  box-shadow: 0px 0px 40px 3px $bloodColor;
   margin-bottom: 30px;
   transition: all 0.5s;
+}
+
+.card[cardPlayed="true"] {
+  cursor: default;
+  pointer-events: none;
+    -webkit-box-shadow: 0px 0px 10px 3px $bloodColor;
+    -moz-box-shadow: 0px 0px 10px 3px$bloodColor;
+    box-shadow: 0px 0px 10px 3px $bloodColor;
+}
+
+.card[cardMarketBySumm="true"] {
+  transition: all 2s;
+  animation: cardMarketBySummAnim 1s ease;
+  -webkit-box-shadow: 0px 0px 4px 3px $bloodColor;
+  -moz-box-shadow: 0px 0px 4px 3px$bloodColor;
+  box-shadow: 0px 0px 4px 3px $bloodColor;
+}
+
+@keyframes cardMarketBySummAnim {
+  0% {
+    -webkit-box-shadow: 0px 0px 40px 3px $bloodColor;
+    -moz-box-shadow: 0px 0px 40px 3px$bloodColor;
+    box-shadow: 0px 0px 40px 3px $bloodColor;
+    margin-bottom: 30px;
+  }
+
+  100% {
+    -webkit-box-shadow: 0px 0px 4px 3px $bloodColor;
+    -moz-box-shadow: 0px 0px 4px 3px$bloodColor;
+    box-shadow: 0px 0px 4px 3px $bloodColor;
+    margin-bottom: 0;
+  }
 }
 
 .card1 {

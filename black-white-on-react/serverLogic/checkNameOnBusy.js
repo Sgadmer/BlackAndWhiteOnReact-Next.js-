@@ -1,6 +1,6 @@
 const checkNameOnBusy = (rooms, socket, roomId, name) => { //Проверка индивидуальности имени игрока
-    let roomToJoin = rooms.get(roomId);
-    let names = roomToJoin.get('names');
+    let currentRoom = rooms.get(roomId);
+    let names = currentRoom.get('names');
 
     let res = names.has(name);
 

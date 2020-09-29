@@ -1,9 +1,12 @@
 import classes from '../../../../../styles/gameTable.module.scss';
 import { UserTableName, setUserName, CardText, setCardPosition } from "../commonLogic/cardsAndNamePlatesFiller";
 import classNames from 'classnames';
-import { getSessionStorage } from '../../../../../servicesAndUtilities/sessionStorageHelper';
+import { getSessionStorage, setSessionStorage } from '../../../../../servicesAndUtilities/sessionStorageHelper';
 import hoverOperator from '../commonLogic/hoverUnhoverCard';
 import cardOnMouseHover from '../commonLogic/cardOnMouseHoverSocket';
+import playedCardMarker from '../commonLogic/markPlayedCard';
+import sumCardPutter from '../commonLogic/putSummOnCard';
+
 
 export default function Round1Cards(
 
@@ -13,7 +16,6 @@ export default function Round1Cards(
     { card1, card2, names },
     setGameCards,
     setUserNameCards,
-    playersTurnName,
     cardsAndNamesRef,
     cardsInput) {
 
@@ -38,10 +40,21 @@ export default function Round1Cards(
         );
     }
 
-    const changeCardsInputVisible = () => {
-        if (userData.name == playersTurnName) {
+    const changeCardsInputVisible = (e) => {
+        e.persist();
+        let userData = getSessionStorage();
+
+        if (userData.name == userData.playersTurnName
+     
+        ) {
             cardsInput.toggleCardsInput();
+            let selectedCard = e.currentTarget;
+            userData.selectedCardPos = selectedCard.getAttribute('cardposition');
+            setSessionStorage(userData);
         }
+   
+
+
     };
 
     for (let i = 0; i < userData.numberOfPlayers * 2; i++) {
@@ -51,9 +64,9 @@ export default function Round1Cards(
                 cardposition={setCardPosition(i)}
                 key={i}
                 className={classNames(classes.card, classes[`card${i + 1}`])}
-                onMouseEnter={(e) => cardOnMouseHover(e, socket, userData, playersTurnName, true)}
-                onMouseLeave={(e) => cardOnMouseHover(e, socket, userData, playersTurnName, false)}
-                onClick={i < 2 ? changeCardsInputVisible : undefined}
+                onMouseEnter={(e) => cardOnMouseHover(e, socket, userData, true)}
+                onMouseLeave={(e) => cardOnMouseHover(e, socket, userData, false)}
+                onClick={i < 2 ? (e) => changeCardsInputVisible(e) : undefined}
             >
 
                 {< CardText i={i} card1={card1} card2={card2} />}
@@ -67,5 +80,6 @@ export default function Round1Cards(
     setGameCards(cardsArray);
 
     socket.on('hoverCardForOtherPlayers', ({ name, cardPos, hoverCase }) => hoverOperator(name, cardPos, cardsAndNamesRef, hoverCase));
-
+    socket.on('markPlayedCardForCurrentPlayer', (summ) => playedCardMarker(cardsAndNamesRef, summ));
+    socket.on('putSummOnCard', ({ usData, summ }) => sumCardPutter(cardsAndNamesRef, usData, summ))
 }

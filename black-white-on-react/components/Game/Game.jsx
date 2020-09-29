@@ -17,10 +17,8 @@ export default function GameComponent() {
   const [URLcopyBTNText, setcopyBTNText] = useState("");
   const socket = useSocket();
   let userData = getSessionStorage();
-  console.log(userData);
 
   useEffect(() => {
-    console.log(socket);
 
     const roomIdMD5 = createMD5(socket);
     if (!userData.roomId) {
@@ -31,7 +29,6 @@ export default function GameComponent() {
         if (!userData.roomId) {
           userData.roomId = roomIdMD5;
           setSessionStorage(userData);
-          console.log(getSessionStorage());
         }
 
         socket.emit("joinRoom", userData);
@@ -56,9 +53,7 @@ export default function GameComponent() {
         if (actualNumberOfPlayers == numberOfPlayers) {
           setLoadText("Начинаем игру!");
 
-          // setTimeout(() => {
           setisReadyToGame(true);
-          // }, 1500)
         }
       }
     );
