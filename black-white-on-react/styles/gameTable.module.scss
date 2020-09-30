@@ -33,6 +33,7 @@ $bloodColor: red;
   backface-visibility: hidden;
   transform-origin: 50% 50% 70px;
   animation: alertRotation 3s ease infinite;
+  z-index: 4;
 }
 
 @keyframes alertRotation {

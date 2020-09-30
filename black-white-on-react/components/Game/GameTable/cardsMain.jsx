@@ -9,6 +9,7 @@ import { useSocket } from "../../../servicesAndUtilities/SocketContext";
 import hoverNameOperator from "./gameLogic/commonLogic/hoverUnhoverName";
 import CardInputComponent from "./gameLogic/cardsInput/cardInput";
 import { useCardsInput } from "../../../servicesAndUtilities/cardsInputContext";
+import VotingPanelComponent from "./gameLogic/votingPanel/votingPanel";
 
 export default function CardsComponent() {
   const [gameCards, setGameCards] = useState("");
@@ -89,6 +90,8 @@ export default function CardsComponent() {
       </div>
 
       {cardsInput.visible && <CardInputComponent />}
+
+      <VotingPanelComponent />
     </>
   );
 }
