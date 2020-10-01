@@ -26,12 +26,7 @@ export default function NumberOfPlayersComponent() {
           </h1>
 
           <div className={classes.wrapperCards}>
-            <div
-              className={classes.ChoiceCard}
-              onClick={() => onChoosingNumber(2)}
-            >
-              <h1>2</h1>
-            </div>
+
             <div
               className={classes.ChoiceCard}
               onClick={() => onChoosingNumber(3)}

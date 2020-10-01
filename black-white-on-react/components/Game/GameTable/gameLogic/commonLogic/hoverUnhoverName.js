@@ -1,4 +1,4 @@
-export default function hoverNameOperator(name, namesRef) {
+export default function hoverNameOperator(name, namesRef, isRemoveAttrOnly) {
 
     let namesArrayNODE = namesRef.current.children;
     let namesAttributes;
@@ -19,7 +19,7 @@ export default function hoverNameOperator(name, namesRef) {
             }
         }
 
-        if (attributeMatchingCount == 2) {
+        if (attributeMatchingCount == 2 && !isRemoveAttrOnly) {
                     currentName.setAttribute('namePlateHovered', true);
         }
     }

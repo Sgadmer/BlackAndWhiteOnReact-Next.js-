@@ -1,8 +1,9 @@
-function randomInteger (min = 1, max = 100) {
-    let rand1 = min + Math.random() * (max + 1 - min);
-    let rand2 = min + Math.random() * (max + 1 - min);
-
-    return Math.floor(rand1 + rand2) * 100;
+function randomInteger(min = 101, max = 100000) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    let rand = Math.floor(Math.random() * (max - min)) + min;
+    rand = rand - (rand % 10);
+    return rand;
 }
 
 module.exports = { randomInteger };

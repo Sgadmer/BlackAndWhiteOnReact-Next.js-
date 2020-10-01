@@ -5,10 +5,13 @@ const createRoom = (rooms, socket, userData, roomIdMD5,) => { //Создание
         ['actualNumberOfPlayers', 0],
         ['numberOfReadyPlayers', 0],
         ['names', new Set()],
+        ['IDs', new Set()],
         ['playersTurn', new Map()],
         ['playersTurnName', ''],
         ['playersTurnCounter', 0],
-        ['currentPlayerTurnCount', 0]
+        ['currentPlayerTurnCount', 0],
+        ['numberOfVotedPlayers', 0],
+        ['playersVote', new Map()]
     ]));
 
     setTimeout(() => {

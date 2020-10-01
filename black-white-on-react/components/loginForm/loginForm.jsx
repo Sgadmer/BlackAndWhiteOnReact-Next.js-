@@ -35,7 +35,7 @@ export default function LoginForm({ roomID }) {
       setSessionStorage(userData);
 
       if (!roomID) {
-        Router.push("/LeadersChoice");
+        Router.push("/NumberOfPlayers");
       } else {
         setErrorText("Проверяем имя");
         socket.emit("checkNameOnBusy", roomID, userData.name);

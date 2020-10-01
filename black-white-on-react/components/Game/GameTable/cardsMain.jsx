@@ -10,13 +10,19 @@ import hoverNameOperator from "./gameLogic/commonLogic/hoverUnhoverName";
 import CardInputComponent from "./gameLogic/cardsInput/cardInput";
 import { useCardsInput } from "../../../servicesAndUtilities/cardsInputContext";
 import VotingPanelComponent from "./gameLogic/votingPanel/votingPanel";
+import funalSumCardPutter from "./gameLogic/commonLogic/putFinalSumOnCards";
+import markLooserNamePlate from "./gameLogic/commonLogic/markLooserNamePlate";
+import Router from "next/router";
+
 
 export default function CardsComponent() {
   const [gameCards, setGameCards] = useState("");
   const [userNamePlates, setUserNameCards] = useState("");
   const [roundAlertion, setRoundAlertion] = useState("");
   const [playersTurnName, setPlayersTurnName] = useState("");
-  const [isFirstTurn, setIsFirstTurn] = useState("true");
+  const [isFirstTurn, setIsFirstTurn] = useState(true);
+  const [votingPanelVis, setVotingPanelVis] = useState(false);
+  const [isEndOfGame, setIsEndOfGame] = useState(false);
   const socket = useSocket();
   const cardsAndNamesRef = useRef(null);
 
@@ -43,7 +49,7 @@ export default function CardsComponent() {
         userData.playersTurnName = name;
         setSessionStorage(userData);
         setPlayersTurnName(name);
-        setRoundAlertion(`Раунд 1`);
+        setRoundAlertion(`Начинаем игру!`);
 
         Round1Cards(
           userNamePlatesArray,
@@ -61,6 +67,34 @@ export default function CardsComponent() {
           setSessionStorage(userData);
           setPlayersTurnName(name);
         });
+      });
+
+      socket.on("noLoserSelected", () => {
+        handleRoundAlert(`Проигравший не выбран!`);
+
+        setTimeout(() => {
+          setVotingPanelVis(false);
+          setVotingPanelVis(true);
+        }, 3000);
+      });
+
+      socket.on("introduceLooser", ({ looserName, cardsInfo }) => {
+        handleRoundAlert(`Проигравший ${looserName}`);
+        hoverNameOperator("", cardsAndNamesRef, true);
+        markLooserNamePlate(looserName, cardsAndNamesRef);
+        setTimeout(() => {
+          handleRoundAlert(`Вскрываемся!`);
+          setTimeout(() => {
+            funalSumCardPutter(cardsAndNamesRef, cardsInfo);
+            setTimeout(() => {
+              setIsEndOfGame(true);
+              setTimeout(() => {
+                Router.push("/ThanksForGame");
+              }, 9000)
+            }, 4000);
+          }, 2000);
+        }, 3000);
+    
       });
     });
   }, []);
@@ -91,7 +125,9 @@ export default function CardsComponent() {
 
       {cardsInput.visible && <CardInputComponent />}
 
-      <VotingPanelComponent />
+      <VotingPanelComponent votingPanelVis={votingPanelVis} />
+
+      {isEndOfGame && <div className={classes.blackScreen}></div>}
     </>
   );
 }

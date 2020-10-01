@@ -17,8 +17,7 @@ export default function CardInputComponent() {
     value = value.replace(digitValidEXP, "");
 
     if (Number.isInteger(+value)) {
-      if (+value > 99999) {
-      } else {
+      if (+value > 0 && +value < 100000) {
         setSumm(value);
       }
     }
@@ -27,9 +26,9 @@ export default function CardInputComponent() {
   function submitSumm() {
     if (summ) {
       let summCopy = summ;
-      summCopy = ++summCopy;
+      summCopy = +summCopy;
 
-      if (Number.isInteger(summCopy) && summCopy > 0 && summCopy < 99999) {
+      if (Number.isInteger(summCopy) && summCopy > 0 && summCopy < 100000) {
         socket.emit("playerChoosedSumm", { userData, summ: summCopy });
         setSumm("");
         handleClose();

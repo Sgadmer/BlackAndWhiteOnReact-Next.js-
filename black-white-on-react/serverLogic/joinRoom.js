@@ -4,6 +4,7 @@ const joinRoom = (rooms, socket, userData, io) => { //Присоединение
 
 
     let roomToJoin = rooms.get(userData.roomId);
+    let IDs = roomToJoin.get('IDs');
 
 
 
@@ -17,6 +18,7 @@ const joinRoom = (rooms, socket, userData, io) => { //Присоединение
             ['card2', randomInteger()]
         ]))
         roomToJoin.set('actualNumberOfPlayers', roomToJoin.get('actualNumberOfPlayers') + 1);
+        IDs.add(socket.id);
 
         socket.join(userData.roomId);
 

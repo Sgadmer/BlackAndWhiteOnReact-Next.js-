@@ -12,6 +12,7 @@ const { playerHoveredCard } = require('./serverLogic/playerHoveredCard');
 const { playerDisconnect } = require('./serverLogic/playerDisconnect');
 const { changePlayerTurn } = require('./serverLogic/changePlayerTurn');
 const { playerChoosedSumm } = require('./serverLogic/playerChoosedSumm');
+const { playerVoted } = require('./serverLogic/playerVoted');
 
 
 
@@ -39,6 +40,8 @@ io.on('connection', (socket) => { //Присоединение игрока
     socket.on('playerHoveredCard', ({ userData, cardPos, hoverCase }) => playerHoveredCard(socket, userData, cardPos, hoverCase));
 
     socket.on('playerChoosedSumm', ({ userData, summ }) => playerChoosedSumm(rooms, socket, io, userData, summ));
+
+    socket.on('playerVoted', ({ userData, playersName }) => playerVoted(rooms, userData, io, playersName))
 
     socket.on('disconnect', () => playerDisconnect(rooms, socket, io));
 });

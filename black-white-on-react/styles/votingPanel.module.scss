@@ -14,25 +14,43 @@ $bloodColor: red;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   z-index: 3;
 }
 
-.votingTable {
-  width: 20rem;
-  height: 15rem;
-  margin: 1.5rem;
-  background-color: $darkColor;
-  border: 0.2rem solid $brightColor;
-  border-radius: 2.5rem;
-  transition: all .5s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  .voteAlert {
+    color: $brightColor;
+    font-size: 3rem;
+  }
 
-  &:hover{
+
+.votingTableWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin-top: 3rem;
+
+
+  .votingTable {
+    width: 20rem;
+    height: 15rem;
+    margin: 1.5rem;
+    background-color: $darkColor;
+    border: 0.2rem solid $brightColor;
+    border-radius: 2.5rem;
+    transition: all 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $brightColor;
+    font-size: 3rem;
+    cursor: pointer;
+
+   
       &:hover {
-      box-shadow: 0 0 5rem $brightColor;
-    }
+        box-shadow: 0 0 5rem $bloodColor;
+      }
+   
   }
 }

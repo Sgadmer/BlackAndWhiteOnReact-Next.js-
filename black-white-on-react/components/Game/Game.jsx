@@ -51,8 +51,6 @@ export default function GameComponent() {
         }
 
         if (actualNumberOfPlayers == numberOfPlayers) {
-          setLoadText("Начинаем игру!");
-
           setisReadyToGame(true);
         }
       }

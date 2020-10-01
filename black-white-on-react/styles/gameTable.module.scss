@@ -2,6 +2,7 @@ $brightColor: white;
 $darkColor: black;
 $ashColor: gray;
 $bloodColor: red;
+$grassColor: green;
 
 .backGround {
   background: url(../images/bg.png) no-repeat;
@@ -78,6 +79,40 @@ $bloodColor: red;
 .userName[namePlateHovered="true"] {
   color: $bloodColor;
   transition: all 0.5s;
+}
+
+.looserName_before_after {
+  height: 10%;
+  width: 130%;
+  background-color: $brightColor;
+  display: inline-block;
+  position: absolute;
+}
+.userName[playerLose="true"] {
+  transition: all 0.5s;
+  color: $bloodColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::before {
+    content: "";
+    height: 10%;
+    width: 130%;
+    background-color: $brightColor;
+    display: inline-block;
+    position: absolute;
+    transform: rotate(20deg);
+  }
+  &::after {
+    content: "";
+    height: 10%;
+    width: 130%;
+    background-color: $brightColor;
+    display: inline-block;
+    position: absolute;
+    transform: rotate(-20deg);
+  }
 }
 
 .userName1 {
@@ -166,9 +201,9 @@ $bloodColor: red;
 .card[cardPlayed="true"] {
   cursor: default;
   pointer-events: none;
-    -webkit-box-shadow: 0px 0px 10px 3px $bloodColor;
-    -moz-box-shadow: 0px 0px 10px 3px$bloodColor;
-    box-shadow: 0px 0px 10px 3px $bloodColor;
+  -webkit-box-shadow: 0px 0px 10px 3px $bloodColor;
+  -moz-box-shadow: 0px 0px 10px 3px$bloodColor;
+  box-shadow: 0px 0px 10px 3px $bloodColor;
 }
 
 .card[cardMarketBySumm="true"] {
@@ -177,6 +212,22 @@ $bloodColor: red;
   -webkit-box-shadow: 0px 0px 4px 3px $bloodColor;
   -moz-box-shadow: 0px 0px 4px 3px$bloodColor;
   box-shadow: 0px 0px 4px 3px $bloodColor;
+}
+
+.card[finalSummLied="true"] {
+  transition: all 2s;
+  animation: cardMarketBySummAnim 1s ease;
+  -webkit-box-shadow: 0px 0px 4px 6px $bloodColor;
+  -moz-box-shadow: 0px 0px 4px 6px$bloodColor;
+  box-shadow: 0px 0px 4px 6px $bloodColor;
+}
+
+.card[finalSummLied="false"] {
+  transition: all 2s;
+  animation: cardMarketBySummAnim 1s ease;
+  -webkit-box-shadow: 0px 0px 4px 6px $grassColor;
+  -moz-box-shadow: 0px 0px 4px 6px$grassColor;
+  box-shadow: 0px 0px 4px 6px $grassColor;
 }
 
 @keyframes cardMarketBySummAnim {
@@ -384,5 +435,27 @@ $bloodColor: red;
         }
       }
     }
+  }
+}
+
+
+.blackScreen{
+  width: 100vw;
+  height: 100vh;
+  background-color: $darkColor;
+  position: absolute;
+  top: 0;left: 0;
+  z-index: 5;
+  opacity: 1;
+  animation: blackScreenUprising 9s ease;
+}
+
+@keyframes blackScreenUprising{
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
   }
 }
