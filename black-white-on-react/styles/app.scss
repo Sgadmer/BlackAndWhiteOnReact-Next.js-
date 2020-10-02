@@ -1,9 +1,14 @@
 $darkColor: black;
 
+html {
+  font-size: 62.5%;
+  overflow: hidden;
+} /* =10px */
+
 body {
   background-color: $darkColor;
-  max-width: 1920px;
-  max-height: 1080px;
+  max-width: 100vw;
+  max-height: 100vh;
   min-height: 100vh;
   display: grid;
   justify-content: center;
@@ -12,7 +17,34 @@ body {
   font-family: impact;
   font-style: normal;
   font-weight: normal;
+  font-size: 1.4rem;
 
   overflow: hidden;
   margin: 0 auto;
+}
+
+.rotateDevice {
+  display: none;
+}
+
+@media only screen and (orientation: portrait) {
+  .rotateDevice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 100;
+    color: white;
+    font-size: 5rem;
+    pointer-events: none;
+    cursor: default;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: all none;
+  }
 }

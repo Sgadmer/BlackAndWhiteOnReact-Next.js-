@@ -12,7 +12,9 @@ export default function ThanksForGameComponent() {
   const socket = useSocket();
   const [gratitudeText, setGratitudeText] = useState("");
   const [textPattern, setTextPattern] = useState(
-    `${userData.name}, спасибо за игру!`
+    userData.name
+      ? `${userData.name}, спасибо за игру!`
+      : `Cпасибо вам за игру!`
   );
 
   useEffect(() => {

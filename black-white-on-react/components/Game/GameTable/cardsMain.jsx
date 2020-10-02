@@ -79,7 +79,7 @@ export default function CardsComponent() {
       });
 
       socket.on("introduceLooser", ({ looserName, cardsInfo }) => {
-        handleRoundAlert(`Проигравший ${looserName}`);
+        handleRoundAlert(`Проигравший - ${looserName}`);
         hoverNameOperator("", cardsAndNamesRef, true);
         markLooserNamePlate(looserName, cardsAndNamesRef);
         setTimeout(() => {
@@ -88,6 +88,9 @@ export default function CardsComponent() {
             funalSumCardPutter(cardsAndNamesRef, cardsInfo);
             setTimeout(() => {
               setIsEndOfGame(true);
+              setTimeout(() => {
+                Router.push("/ThanksForGame");
+              }, 9000);
             }, 4000);
           }, 2000);
         }, 3000);
@@ -107,14 +110,6 @@ export default function CardsComponent() {
       hoverNameOperator(playersTurnName, cardsAndNamesRef);
     }
   }, [playersTurnName]);
-
-  useEffect(() => {
-    if (isEndOfGame) {
-      setTimeout((router = Router) => {
-        router.push("/ThanksForGame");
-      }, 9000);
-    }
-  }, [isEndOfGame]);
 
   return (
     <>

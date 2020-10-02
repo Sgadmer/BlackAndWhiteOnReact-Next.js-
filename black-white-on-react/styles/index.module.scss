@@ -1,25 +1,25 @@
 $brightColor: white;
 
 %text {
-  font-size: 72px;
-  line-height: 84px;
+  font-size: 5rem;
+  line-height: 6rem;
   color: #000000;
   text-align: center;
 }
 
 %commonStyles {
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
+  border-radius: 1rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
   background-color: $brightColor;
   cursor: pointer;
 }
 
 .wrapper {
-  width: 605px;
-  height: 250px;
+  width: 55rem;
+  height: 25rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -30,28 +30,31 @@ $brightColor: white;
 .nameInput {
   @extend %commonStyles;
   @extend %text;
-  width: 480px;
-  height: 75px;
+  width: 50rem;
+  height: 8rem;
 }
 
 .inputErrorRed {
   @extend %commonStyles;
   @extend %text;
   color: red;
-  width: 480px;
-  height: 75px;
+  width: 50rem;
+  height: 8rem;
 }
 
 .inputErrorAlert {
   @extend %commonStyles;
   @extend %text;
 
-  font-size: 30px;
-  line-height: 40px;
-  width: 240px;
-  min-height: 40px;
+  font-size: 3rem;
+  line-height: 4rem;
+  width: 24rem;
+  min-height: 8rem;
   color: rgb(0, 0, 0);
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   right: -33%;
   top: 0;
   z-index: 2;
@@ -66,8 +69,8 @@ $brightColor: white;
 }
 
 .startGameBTN {
-  width: 605px;
-  height: 111px;
+  width: 50rem;
+  height: 11rem;
   transition: all 0.45s;
 
   @extend %commonStyles;
@@ -75,5 +78,34 @@ $brightColor: white;
 
   &:hover {
     box-shadow: 0 0 20px $brightColor;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+  .nameInput {
+    text-align: left;
+  }
+
+  .inputErrorAlert {
+    @extend %commonStyles;
+    @extend %text;
+
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 8rem;
+    right: 4rem;
+    top: 0;
+
+    &::after {
+      content: "";
+      display: none;
+    }
+  }
+
+  .inputErrorRed {
+    text-align: left;
   }
 }

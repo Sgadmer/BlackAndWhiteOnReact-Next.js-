@@ -24,9 +24,11 @@ $bloodColor: red;
 }
 
 .votingTableWrapper {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+   display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: wrap;
   margin-top: 3rem;
 
   .votingTable {
@@ -49,4 +51,17 @@ $bloodColor: red;
       box-shadow: 0 0 5rem $bloodColor;
     }
   }
+}
+
+
+/* Большие экраны ----------- */
+@media only screen  and (max-width: 1824px) {
+  .votingTableWrapper {
+
+  .votingTable {
+    width: 30vw;
+    height: 30vh;
+
+  }
+}
 }

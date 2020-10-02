@@ -9,7 +9,9 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Black and White</title>
         <link rel="shortcut icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
       </Head>
+      <div className={'rotateDevice'}>Пожалуйста, переверните устройство</div>
       <Component {...pageProps} />
     </SocketProvider>
   );

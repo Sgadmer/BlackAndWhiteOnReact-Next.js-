@@ -4,6 +4,14 @@ export function setSessionStorage(userData) {
 }
 
 export function getSessionStorage() {
-    let userData = sessionStorage.getItem('userData');;
-    return JSON.parse(userData);
+    let userData = {};
+    try {
+        userData = sessionStorage.getItem('userData');
+        return JSON.parse(userData);
+    } catch (e) {
+        userData.name = '';
+        return userData;
+    }
+
+
 }

@@ -6,18 +6,19 @@ $grassColor: green;
 
 .backGround {
   background: url(../public/bg.png) no-repeat;
-  transform: scale(1.23);
-  width: 1920px;
-  height: 1080px;
+  background-size: cover;
+  background-position: center center;
+  width: 100vw;
+  height: 100vh;
   overflow: hidden;
   z-index: 1;
 }
 
 .roundAlertion {
-  perspective: 1000px;
+  perspective: 100rem;
   width: 30vw;
   min-height: 15vh;
-  max-height: 300px;
+  max-height: 30rem;
   background-color: $darkColor;
   background-size: cover;
   color: $brightColor;
@@ -29,10 +30,10 @@ $grassColor: green;
   position: absolute;
   top: 6vh;
   left: 35%;
-  border: 3px solid $brightColor;
-  border-radius: 30px;
+  border: 0.3rem solid $brightColor;
+  border-radius: 3rem;
   backface-visibility: hidden;
-  transform-origin: 50% 50% 70px;
+  transform-origin: 50% 50% 7rem;
   animation: alertRotation 3s ease infinite;
   z-index: 4;
 }
@@ -70,7 +71,7 @@ $grassColor: green;
 
 .userName {
   color: $brightColor;
-  font-size: 3rem;
+  font-size: 3.7rem;
   position: absolute;
   text-align: center;
   pointer-events: none;
@@ -116,21 +117,22 @@ $grassColor: green;
 }
 
 .userName1 {
-  transform: translate3d(-48.5rem, 2.5rem, 0) skew(0, -8deg) rotate(1deg)
+  transform: translate3d(-79.3rem, 6.8rem, 0) skew(0, -8deg) rotate(1deg)
     scale(0.65);
 }
 
 .userName2 {
-  transform: translate3d(-28.4rem, 0, 0) skew(0, -5deg) rotate(1deg) scale(0.5);
+  transform: translate3d(-47.5rem, 2.5rem, 0) skew(0, -5deg) rotate(0deg)
+    scale(0.5);
 }
 
 .userName3 {
-  transform: translate3d(25.6rem, 0.4rem, 0) skew(0, 9deg) rotate(-5deg)
+  transform: translate3d(38.5rem, 3rem, 0) skew(-3deg, 9deg) rotate(-4deg)
     scale(0.47);
 }
 
 .userName4 {
-  transform: translate3d(47.5rem, 2.3rem, 0) skew(0deg, 7deg) rotate(-2deg)
+  transform: translate3d(73rem, 6.7rem, 0) skew(0deg, 7deg) rotate(0deg)
     scale(0.7);
 }
 
@@ -175,12 +177,12 @@ $grassColor: green;
 
 .card {
   background: url(../public/card.png) no-repeat;
-  border-radius: 0.5rem;
+  border-radius: 1.5rem;
   background-size: 100% 100%;
-  height: 160px;
-  width: 90px;
+  height: 18rem;
+  width: 11rem;
   position: absolute;
-  font-size: 2rem;
+  font-size: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,10 +193,10 @@ $grassColor: green;
 }
 
 .card[cardHovered="true"] {
-  -webkit-box-shadow: 0px 0px 40px 3px $bloodColor;
-  -moz-box-shadow: 0px 0px 40px 3px$bloodColor;
-  box-shadow: 0px 0px 40px 3px $bloodColor;
-  margin-bottom: 30px;
+  -webkit-box-shadow: 0px 0px 5rem 5px $bloodColor;
+  -moz-box-shadow: 0px 0px 5rem 5px$bloodColor;
+  box-shadow: 0px 0px 5rem 5px $bloodColor;
+  margin-bottom: 4rem;
   transition: all 0.5s;
 }
 
@@ -247,55 +249,56 @@ $grassColor: green;
 }
 
 .card1 {
-  @include cardsAnimation(-53rem, 9.3rem, 0, 0.66);
+  @include cardsAnimation(-85rem, 18.5rem, 0, 0.66);
   @extend .playersCardCommon;
-  transform: translate3d(-53rem, 9.3rem, 0) skew(29deg, -13deg) scale(0.85);
+  transform: translate3d(-85rem, 18.5rem, 0) skew(29deg, -13deg) scale(0.85);
   &:hover {
-    transform: translate3d(-53rem, 9.3rem, 0) skew(0, 0) scale(1.5);
+    transform: translate3d(-85rem, 18.5rem, 0) skew(0, 0) scale(1.5);
   }
 }
 
 .card2 {
-  @include cardsAnimation(-40.5rem, 6.8rem, 0, 0.75);
+  @include cardsAnimation(-70rem, 15rem, 0, 0.75);
   @extend .playersCardCommon;
-  transform: translate3d(-40.5rem, 6.8rem, 0) skew(29deg, -11deg) rotate(-2deg)
+  transform: translate3d(-70rem, 15rem, 0) skew(29deg, -11deg) rotate(-2deg)
     scale(0.73);
   &:hover {
-    transform: translate3d(-40.5rem, 6.8rem, 0) skew(0, 0) scale(1.5);
+    transform: translate3d(-70rem, 15rem, 0) skew(0, 0) scale(1.5);
+    z-index: 2;
   }
 }
 
 .card3 {
-  @include cardsAnimation(-32.5rem, 5rem, 0, 0.64);
-  transform: translate3d(-32.5rem, 5rem, 0) skew(23deg, -8deg) scale(0.64);
+  @include cardsAnimation(-52rem, 10.5rem, 0, 0.64);
+  transform: translate3d(-52rem, 10.5rem, 0) skew(23deg, -8deg) scale(0.64);
 }
 
 .card4 {
   @include cardsAnimation(-22rem, 3.7rem, 0, 0.64);
-  transform: translate3d(-22rem, 3.7rem, 0) skew(23deg, -8deg) rotate(-2deg)
+  transform: translate3d(-40rem, 8.8rem, 0) skew(22deg, -6deg) rotate(-2deg)
     scale(0.57);
 }
 
 .card5 {
-  @include cardsAnimation(19.5rem, 3.8rem, 0, 0.64);
-  transform: translate3d(19.5rem, 3.8rem, 0) skew(-24deg, 8deg) rotate(2deg)
+  @include cardsAnimation(30rem, 9rem, 0, 0.64);
+  transform: translate3d(30rem, 9rem, 0) skew(-24deg, 8deg) rotate(2deg)
     scale(0.57);
 }
 
 .card6 {
-  @include cardsAnimation(29rem, 5rem, 0, 0.64);
-  transform: translate3d(29rem, 5rem, 0) skew(-24deg, 8deg) rotate(2deg)
+  @include cardsAnimation(43rem, 11rem, 0, 0.64);
+  transform: translate3d(43rem, 11rem, 0) skew(-24deg, 8deg) rotate(2deg)
     scale(0.64);
 }
 
 .card7 {
-  @include cardsAnimation(38.6rem, 6.6rem, 0, 0.64);
-  transform: translate3d(38.6rem, 6.6rem, 0) skew(-27deg, 10deg) scale(0.7);
+  @include cardsAnimation(62.5rem, 14.5rem, 0, 0.64);
+  transform: translate3d(62.5rem, 14.5rem, 0) skew(-27deg, 10deg) scale(0.7);
 }
 
 .card8 {
   @include cardsAnimation(52.5rem, 8.8rem, 0, 0.64);
-  transform: translate3d(52.5rem, 8.8rem, 0) skew(-27deg, 10deg) scale(0.82);
+  transform: translate3d(76rem, 17rem, 0) skew(-27deg, 10deg) scale(0.79);
 }
 
 %beforeAfterCloseBTN {
@@ -457,5 +460,195 @@ $grassColor: green;
 
   100% {
     opacity: 1;
+  }
+}
+
+/*WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW*/
+
+/* Большие экраны ----------- */
+@media only screen and (max-width: 1600px) {
+  .backGround {
+    background: black;
+  }
+
+  .roundAlertion {
+    perspective: 100rem;
+    width: 90vw;
+    min-height: 25vh;
+    font-size: 3rem;
+    top: 6vh;
+    left: 5vw;
+    z-index: 4;
+  }
+
+  .cardsWrapper {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    perspective: 10rem;
+
+    &::before {
+      content: "";
+      height: 100vh;
+      width: 0.5rem;
+      background-color: $brightColor;
+    }
+
+    &::after {
+      content: "";
+      height: 100vw;
+      width: 0.5rem;
+      background-color: $brightColor;
+      transform: rotate(90deg);
+    }
+  }
+
+  .userName {
+    color: $brightColor;
+    font-size: 3.7rem;
+    position: absolute;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  .userName1 {
+    transform: translate3d(0, 0, 0) skew(0, 0) rotate(0) scale(1);
+    top: 0;
+    left: 0;
+  }
+
+  .userName2 {
+    transform: translate3d(0, 0, 0) skew(0, 0) rotate(0) scale(1);
+    top: 0;
+    right: 0;
+  }
+
+  .userName3 {
+    transform: translate3d(0, 0, 0) skew(0, 0) rotate(0) scale(1);
+    bottom: 0;
+    left: 0;
+  }
+
+  .userName4 {
+    transform: translate3d(0, 0, 0) skew(0, 0) rotate(0) scale(1);
+    bottom: 0;
+    right: 0;
+  }
+
+  @mixin cardsAnimation() {
+    animation: cardsAnimation 2s ease;
+    @keyframes cardsAnimation {
+      0% {
+        transform: translate3d(0, 0, 0) skew(0, 0) scale(1) scale(0);
+      }
+      1% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate3d(0, 0, 0) skew(0, 0) scale(1) scale(1);
+      }
+    }
+  }
+
+  .card {
+    background: url(../public/card.png) no-repeat;
+    border-radius: 1.5rem;
+    background-size: 100% 100%;
+    height: 30vh;
+    width: 20vw;
+    position: absolute;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $brightColor;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  $topCardsTop: 5rem;
+  $topCardsBottom: 0;
+
+  .card1 {
+    @include cardsAnimation();
+    @extend .playersCardCommon;
+    transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+    left: 3vw;
+    top: $topCardsTop;
+    &:hover {
+      transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+    }
+  }
+
+  .card2 {
+    @include cardsAnimation();
+    @extend .playersCardCommon;
+    transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+    left: 26vw;
+    top: $topCardsTop;
+    &:hover {
+      transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+      z-index: 2;
+    }
+  }
+
+  .card3 {
+    @include cardsAnimation();
+    transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+    left: 54vw;
+    top: $topCardsTop;
+  }
+
+  .card4 {
+    @include cardsAnimation();
+    transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+    left: 77vw;
+    top: $topCardsTop;
+  }
+
+  $bottomCardsTop: 0;
+  $bottomCardsBottom: 5rem;
+  .card5 {
+    @include cardsAnimation();
+    transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+    left: 3vw;
+    bottom: $bottomCardsBottom;
+  }
+
+  .card6 {
+    @include cardsAnimation();
+    transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+    left: 26vw;
+    bottom: $bottomCardsBottom;
+  }
+
+  .card7 {
+    @include cardsAnimation();
+    transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+    left: 54vw;
+    bottom: $bottomCardsBottom;
+  }
+
+  .card8 {
+    @include cardsAnimation();
+    transform: translate3d(0, 0, 0) skew(0, 0) scale(1);
+    left: 77vw;
+    bottom: $bottomCardsBottom;
+  }
+
+  .inputAndBTNSWrapper {
+    .inputSumm {
+      font-size: 4rem;
+      width: 45vw;
+      margin: 1vw;
+      height: 25vh;
+    }
   }
 }
