@@ -7,8 +7,8 @@ import cardOnMouseHover from '../commonLogic/cardOnMouseHoverSocket';
 import playedCardMarker from '../commonLogic/markPlayedCard';
 import sumCardPutter from '../commonLogic/putSummOnCard';
 
-
-export default function Round1Cards(
+//Генерирует карты и таблички имен
+export default function RoundCards(
 
     userNamePlatesArray,
     cardsArray,

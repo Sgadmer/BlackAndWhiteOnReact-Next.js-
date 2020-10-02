@@ -1,3 +1,4 @@
+//Эмитирует событие, когда текущий игрок наводит мышь на карту, чтобы эта карта выделилась у остальных игроков
 export default function cardOnMouseHover(e, socket, userData, hoverCase) {
     e.persist();
     let attributes = e.target.attributes;

@@ -1,3 +1,6 @@
+/*Помещает на карты всех игроков реальную сумму и суммы игроков (в финале),
+а также выделяет карты зеленым или красным цветом, в зависимости от того соврал игрок или нет (равна ли реальная сумма сумме игрока)*/
+
 export default function funalSumCardPutter(cardsRef, cardsInfo) {
     let cardsArrayNODE = cardsRef.current.children;
     let cardAttributes;

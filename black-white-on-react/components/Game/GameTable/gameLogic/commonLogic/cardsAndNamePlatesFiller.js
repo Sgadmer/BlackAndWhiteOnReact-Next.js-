@@ -1,3 +1,4 @@
+// ф-ия для заполнения карт и табличек имён информацией
 function UserTableName({ userData, i, names }) {
     switch (i) {
         case 0:

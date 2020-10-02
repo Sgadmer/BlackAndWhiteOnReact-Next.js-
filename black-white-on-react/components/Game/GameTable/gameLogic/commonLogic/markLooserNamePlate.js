@@ -1,3 +1,4 @@
+//Выделяет табличку с именем проигравшего игрока
 export default function markLooserNamePlate(name, namesRef, isRemoveAttrOnly) {
 
     let namesArrayNODE = namesRef.current.children;

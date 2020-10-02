@@ -3,6 +3,7 @@ import { getSessionStorage } from "../../../../../servicesAndUtilities/sessionSt
 import { useSocket } from "../../../../../servicesAndUtilities/SocketContext";
 import classes from "../../../../../styles/votingPanel.module.scss";
 
+//Таблички для голосования с именами игроков
 export default function VotingPanelComponent({ votingPanelVis }) {
   const [votingVisibility, setVotingVisibility] = useState(false);
   const [votingTables, setVotingTables] = useState([]);

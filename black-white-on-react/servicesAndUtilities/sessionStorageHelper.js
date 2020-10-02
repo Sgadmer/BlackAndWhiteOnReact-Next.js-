@@ -1,3 +1,4 @@
+//Позволяет сохранять / получать данные игрока из/в sessionStorage
 export function setSessionStorage(userData) {
     sessionStorage.setItem('userData', JSON.stringify(userData));
 }

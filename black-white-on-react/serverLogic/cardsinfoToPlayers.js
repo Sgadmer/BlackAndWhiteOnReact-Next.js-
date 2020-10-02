@@ -1,3 +1,4 @@
+//В финале отправляет на клиенты информацию о всех картах игроков для раскрытия сумм
 const cardsinfoToPlayers = (rooms, userData) => {
     let currentRoom = rooms.get(userData.roomId);
     let IDs = currentRoom.get('IDs');

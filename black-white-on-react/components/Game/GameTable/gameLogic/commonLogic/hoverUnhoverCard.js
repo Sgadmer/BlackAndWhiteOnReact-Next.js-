@@ -1,3 +1,4 @@
+//Выделяет карту на которую навелся текущий игрок у других игроков (продолжение cardOnMouseHoverSocket)
 export default function hoverCardOperator(name, cardPos, cardsRef, hoverCase) {
 
     let cardsArrayNODE = cardsRef.current.children;

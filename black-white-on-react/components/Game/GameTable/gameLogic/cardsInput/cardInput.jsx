@@ -4,6 +4,7 @@ import { getSessionStorage } from "../../../../../servicesAndUtilities/sessionSt
 import { useSocket } from "../../../../../servicesAndUtilities/SocketContext";
 import classes from "../../../../../styles/gameTable.module.scss";
 
+//Компонент с инпутом, в который игрок вводит свою сумму
 export default function CardInputComponent() {
   const [summ, setSumm] = useState("");
   let cardsInput = useCardsInput();

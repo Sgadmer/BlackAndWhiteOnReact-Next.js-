@@ -1,3 +1,5 @@
+/*Помещает сумму выбранную игроком на сыгранную карту у других игроков*/
+
 export default function sumCardPutter(cardsRef, userData = usData, summ) {
     let cardsArrayNODE = cardsRef.current.children;
     let cardAttributes;

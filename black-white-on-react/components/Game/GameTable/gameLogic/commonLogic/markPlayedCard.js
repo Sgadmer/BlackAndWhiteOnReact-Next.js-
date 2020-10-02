@@ -1,5 +1,6 @@
 import { getSessionStorage } from "../../../../../servicesAndUtilities/sessionStorageHelper";
 
+//Выделяет сыгранную карту у ходящего игрока и помещает на нее реальную сумму и сумму игрока
 export default function playedCardMarker(cardsRef, summ) {
     let userData = getSessionStorage();
     let cardsArrayNODE = cardsRef.current.children;

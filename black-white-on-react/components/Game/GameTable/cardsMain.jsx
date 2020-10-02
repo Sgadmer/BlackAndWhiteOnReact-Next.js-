@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Round1Cards from "./gameLogic/round1/SetRound1Cards";
+import RoundCards from "./gameLogic/round/SetRoundCards";
 import classes from "../../../styles/gameTable.module.scss";
 import {
   getSessionStorage,
@@ -14,6 +14,7 @@ import funalSumCardPutter from "./gameLogic/commonLogic/putFinalSumOnCards";
 import markLooserNamePlate from "./gameLogic/commonLogic/markLooserNamePlate";
 import Router from "next/router";
 
+//Основная логика игры
 export default function CardsComponent() {
   const [gameCards, setGameCards] = useState("");
   const [userNamePlates, setUserNameCards] = useState("");
@@ -50,7 +51,7 @@ export default function CardsComponent() {
         setPlayersTurnName(name);
         setRoundAlertion(`Начинаем игру!`);
 
-        Round1Cards(
+        RoundCards(
           userNamePlatesArray,
           cardsArray,
           socket,

@@ -1,3 +1,4 @@
+//Выделяет(снимает выделение) табличку с именем ходящего игрока
 export default function hoverNameOperator(name, namesRef, isRemoveAttrOnly) {
 
     let namesArrayNODE = namesRef.current.children;
