@@ -19,7 +19,6 @@ export default function GameComponent() {
   let userData = getSessionStorage();
 
   useEffect(() => {
-
     const roomIdMD5 = createMD5(socket);
     if (!userData.roomId) {
       setLoadText("Создаём комнату");

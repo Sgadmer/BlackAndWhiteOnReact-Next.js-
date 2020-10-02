@@ -4,16 +4,16 @@ export default function cardOnMouseHover(e, socket, userData, hoverCase) {
     let cardUserName = attributes.userName.value;
 
     if (userData.name == userData.playersTurnName
-            && userData.name == cardUserName
-         
-        ) {
+        && userData.name == cardUserName
+
+    ) {
 
 
-            let cardPos = attributes.cardPosition.value;
-            socket.emit('playerHoveredCard', { userData, cardPos, hoverCase });
+        let cardPos = attributes.cardPosition.value;
+        socket.emit('playerHoveredCard', { userData, cardPos, hoverCase });
 
-        }
-  
+    }
+
 
 
 }

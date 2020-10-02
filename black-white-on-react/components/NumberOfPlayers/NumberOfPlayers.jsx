@@ -2,16 +2,18 @@ import classes from "../../styles/choiceCards.module.scss";
 import Router from "next/router";
 import Loader from "../Game/loader";
 import { useState } from "react";
-import { getSessionStorage, setSessionStorage } from "../../servicesAndUtilities/sessionStorageHelper";
+import {
+  getSessionStorage,
+  setSessionStorage,
+} from "../../servicesAndUtilities/sessionStorageHelper";
 
 export default function NumberOfPlayersComponent() {
   const [isNumberChoosen, setisNumberChoosen] = useState(false);
   let userData = getSessionStorage();
 
-
   function onChoosingNumber(Number) {
     userData.numberOfPlayers = Number;
-      setSessionStorage(userData);
+    setSessionStorage(userData);
 
     setisNumberChoosen(true);
     Router.push("/Game");
@@ -26,7 +28,6 @@ export default function NumberOfPlayersComponent() {
           </h1>
 
           <div className={classes.wrapperCards}>
-
             <div
               className={classes.ChoiceCard}
               onClick={() => onChoosingNumber(3)}

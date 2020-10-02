@@ -18,18 +18,16 @@ $bloodColor: red;
   z-index: 3;
 }
 
-  .voteAlert {
-    color: $brightColor;
-    font-size: 3rem;
-  }
-
+.voteAlert {
+  color: $brightColor;
+  font-size: 3rem;
+}
 
 .votingTableWrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   margin-top: 3rem;
-
 
   .votingTable {
     width: 20rem;
@@ -47,10 +45,8 @@ $bloodColor: red;
     font-size: 3rem;
     cursor: pointer;
 
-   
-      &:hover {
-        box-shadow: 0 0 5rem $bloodColor;
-      }
-   
+    &:hover {
+      box-shadow: 0 0 5rem $bloodColor;
+    }
   }
 }

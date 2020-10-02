@@ -45,14 +45,14 @@ export default function Round1Cards(
         let userData = getSessionStorage();
 
         if (userData.name == userData.playersTurnName
-     
+
         ) {
             cardsInput.toggleCardsInput();
             let selectedCard = e.currentTarget;
             userData.selectedCardPos = selectedCard.getAttribute('cardposition');
             setSessionStorage(userData);
         }
-   
+
 
 
     };

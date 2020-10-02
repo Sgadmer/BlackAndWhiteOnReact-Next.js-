@@ -15,7 +15,7 @@ export default function hoverCardOperator(name, cardPos, cardsRef, hoverCase) {
         }
 
         if (attributeMatchingCount == 2) {
-           
+
             switch (hoverCase) {
                 case true:
                     card.setAttribute('cardHovered', true);

@@ -438,24 +438,24 @@ $grassColor: green;
   }
 }
 
-
-.blackScreen{
+.blackScreen {
   width: 100vw;
   height: 100vh;
   background-color: $darkColor;
   position: absolute;
-  top: 0;left: 0;
+  top: 0;
+  left: 0;
   z-index: 5;
   opacity: 1;
   animation: blackScreenUprising 9s ease;
 }
 
-@keyframes blackScreenUprising{
-  0%{
+@keyframes blackScreenUprising {
+  0% {
     opacity: 0;
   }
 
-  100%{
+  100% {
     opacity: 1;
   }
 }

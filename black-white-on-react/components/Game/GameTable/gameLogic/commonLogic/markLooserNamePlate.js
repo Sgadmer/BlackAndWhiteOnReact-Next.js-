@@ -11,11 +11,11 @@ export default function markLooserNamePlate(name, namesRef, isRemoveAttrOnly) {
             namesAttributes = currentName.attributes;
             attributeMatchingCount = 0;
 
-     
-            
+
+
             for (let attr of namesAttributes) {
                 if (attr.value == name) attributeMatchingCount++;
-             
+
             }
 
             if (attributeMatchingCount && !isRemoveAttrOnly) {

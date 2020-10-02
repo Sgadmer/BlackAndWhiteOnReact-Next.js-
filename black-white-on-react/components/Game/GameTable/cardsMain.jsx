@@ -14,7 +14,6 @@ import funalSumCardPutter from "./gameLogic/commonLogic/putFinalSumOnCards";
 import markLooserNamePlate from "./gameLogic/commonLogic/markLooserNamePlate";
 import Router from "next/router";
 
-
 export default function CardsComponent() {
   const [gameCards, setGameCards] = useState("");
   const [userNamePlates, setUserNameCards] = useState("");
@@ -90,11 +89,10 @@ export default function CardsComponent() {
               setIsEndOfGame(true);
               setTimeout(() => {
                 Router.push("/ThanksForGame");
-              }, 9000)
+              }, 9000);
             }, 4000);
           }, 2000);
         }, 3000);
-    
       });
     });
   }, []);

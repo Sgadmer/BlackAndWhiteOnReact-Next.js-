@@ -46,4 +46,4 @@ function setCardPosition(i) {
 }
 
 
-export { UserTableName, setUserName, CardText, setCardPosition}
+export { UserTableName, setUserName, CardText, setCardPosition }

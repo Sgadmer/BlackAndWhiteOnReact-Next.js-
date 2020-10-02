@@ -20,7 +20,7 @@ export default function hoverNameOperator(name, namesRef, isRemoveAttrOnly) {
         }
 
         if (attributeMatchingCount == 2 && !isRemoveAttrOnly) {
-                    currentName.setAttribute('namePlateHovered', true);
+            currentName.setAttribute('namePlateHovered', true);
         }
     }
 }

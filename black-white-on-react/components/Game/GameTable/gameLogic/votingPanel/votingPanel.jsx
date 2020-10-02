@@ -23,13 +23,10 @@ export default function VotingPanelComponent({ votingPanelVis }) {
             playersname={names[i]}
             key={i}
             onClick={(e) => {
-              socket.emit(
-                "playerVoted",
-                {
-                  userData,
-                  playersName: e.currentTarget.getAttribute("playersname")
-                }
-              );
+              socket.emit("playerVoted", {
+                userData,
+                playersName: e.currentTarget.getAttribute("playersname"),
+              });
               setVotingVisibility(false);
             }}
           >

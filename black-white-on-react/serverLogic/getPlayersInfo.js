@@ -11,4 +11,4 @@ const getPlayersInfo = (rooms, socket, userData) => { //Получение да�
 
 }
 
-module.exports = { getPlayersInfo};
+module.exports = { getPlayersInfo };
