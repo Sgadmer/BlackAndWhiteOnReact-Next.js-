@@ -41,7 +41,7 @@ io.on('connection', (socket) => { //Присоединение игрока
 
     socket.on('playerChoosedSumm', ({ userData, summ }) => playerChoosedSumm(rooms, socket, io, userData, summ));
 
-    socket.on('playerVoted', ({ userData, playersName }) => playerVoted(rooms, userData, io, playersName))
+    socket.on('playerVoted', ({ userData, playersName }) => playerVoted(rooms, userData, io, playersName));
 
     socket.on('disconnect', () => playerDisconnect(rooms, socket, io));
 });
